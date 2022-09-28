@@ -1,21 +1,34 @@
-import PropTypes from 'prop-types'
+import React from 'react'
+import './button.css'
+import { Link } from 'react-router-dom'
 
-const Button = ({color, test, onClick}) => {
-    return (
-    <button onClick={onClick} style={{backgroundColor: color}}
-    className="btn">
-        {text}
-        </button>
-)}
+const STYLES =['btn--primary', 'btn--outline'];
 
-Button.defaultProps = {
-    color: 'steelblue'
-}
+const SIZES = ['btn--medium', 'btn--large'];
 
-Button.defaultTypes = {
-    text: PropTypes.string,
-    color: PropTypes.string,
-    onClick: PropTypes.func,
-}
+export const Button = ({
+    children, 
+    type, 
+    onClick, 
+    buttonStyle, 
+    buttonSize,
+}) => {
+    const checkButtonStyle = STYLES.includes(buttonStyle)
+    ? buttonStyle : STYLES[0];
+
+    const checkButtonSize =SIZES.includes(buttonSize) ? buttonSize : SIZES[0]
+
+    return(
+        <Link to='/pages/login' className='btn-mobile'>
+            <button
+            className={`btn ${checkButtonStyle} ${checkButtonSize}`}
+            onClick={onClick}
+            type={type}
+            >
+                {children}
+            </button>
+        </Link>
+    )
+};
 
 export default Button
