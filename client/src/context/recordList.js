@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+//import "bootstrap/dist/css/bootstrap.css";
  
 const Record = (props) => (
  <tr>
