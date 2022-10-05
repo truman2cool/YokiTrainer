@@ -2,14 +2,19 @@ import React from 'react';
 import '../css/App.css';
 //import Header from './header';
 import Footer from './footer';
-import Midsection from './Midsection';
+import Midsection from './midsection';
 
 function Home() {
+
   return (
-    <>        
-        <Midsection/>
-        <Footer />
-    </>
+    <div className='Home'>   
+        <Midsection /> 
+      <footer>
+          <Footer />
+    </footer>    
+    </div>
+
+
   );
 }
 

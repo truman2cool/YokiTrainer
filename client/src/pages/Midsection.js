@@ -1,14 +1,14 @@
 import React from 'react';
 import '../css/App.css';
-import { Button } from '../components/button';
+import { Button, Button2 } from '../components/button';
 import '../css/Midsection.css';
 
 function Midsection() {
   return (
     <div className='hero-container'>
       <video src='/videos/video-1.mp4' autoPlay loop muted />
-      <h1>Learning Awaits</h1>
-      <p>What are you waiting for?</p>
+      <h1>Yoki Staff</h1>
+      <p>What are you waiting for? Get to work!</p>
       <div className='hero-btns'>
         <Button
           className='btns'
@@ -17,14 +17,14 @@ function Midsection() {
         >
           GET STARTED
         </Button>
-        <Button
+        <Button2
           className='btn'
           buttonStyle='btn--primary'
           buttonSize='btn--large'
           onClick={console.log('hey')}
         >
-          Watch Now <i className='far fa-play-circle' />
-        </Button>
+          Check us out
+        </Button2>
       </div>
     </div>
   );

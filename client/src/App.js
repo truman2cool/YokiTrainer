@@ -5,27 +5,33 @@ import { Route, Routes} from "react-router-dom";
 
 // We import all the components we need in our app
 import Home from "./pages/home";
-import Navbar from "./components/navbar";
 import RecordList from "./context/recordList";
-//import Menu from "./pages/menu";
 import Edit from "./components/edit";
 import Create from "./components/create";
-//import Midsection from "./pages/Midsection";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
+import Navbar from "./components/navbar";
+import About from "./pages/about";
 
-const App = () => {
-  //const { user } = useAuthContext()
+
+function App () {
 
  return (
-   <div className="App">
-   <Navbar />
-     <Routes>
-       <Route exact path="/pages/home" element={<Home />} />
-       <Route path="/context/recordList" element={<RecordList/>} />
-       <Route path="/edit/:id" element={<Edit />} />
-       <Route path="/create" element={<Create />} />
-     </Routes>
+   <div className="App"> 
+      <div className="pages">  
+      <Navbar />
+        <Routes>      
+          <Route exact path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/context/recordList" element={<RecordList/>} />
+          <Route path="/edit/:id" element={<Edit />} />
+          <Route path="/create" element={<Create />} /> 
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </div> 
    </div>
  );
-};
+}
  
 export default App;

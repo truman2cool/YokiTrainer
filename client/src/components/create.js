@@ -36,7 +36,7 @@ export default function Create() {
    });
  
    setForm({ name: "", description: "", category: "" });
-   navigate("/");
+   navigate("../context/recordList");
  }
  
  // This following section will display the form that takes the input from the user.
@@ -88,7 +88,8 @@ export default function Create() {
              onChange={(e) => updateForm({ category: e.target.value })}
            />
            <label htmlFor="sushi" className="form-check-label">Maki</label>
-         </div>         <div className="form-check form-check-inline">
+         </div>         
+         <div className="form-check form-check-inline">
            <input
              className="form-check-input"
              type="radio"
@@ -98,8 +99,33 @@ export default function Create() {
              checked={form.category === "Sushi"}
              onChange={(e) => updateForm({ category: e.target.value })}
            />
-           <label htmlFor="cocktail" className="form-check-label">Sushi</label>
-         </div>         <div className="form-check form-check-inline">
+           <label htmlFor="sushi" className="form-check-label">Sushi</label>
+         </div>     
+         <div className="form-check form-check-inline">
+           <input
+             className="form-check-input"
+             type="radio"
+             name="category"
+             id="categoryEntrées"
+             value="Entrées"
+             checked={form.category === "Entrées"}
+             onChange={(e) => updateForm({ category: e.target.value })}
+           />
+           <label htmlFor="Entrées" className="form-check-label">Entrées</label>
+         </div>  
+         <div className="form-check form-check-inline">
+           <input
+             className="form-check-input"
+             type="radio"
+             name="category"
+             id="categoryRamen"
+             value="Ramen"
+             checked={form.category === "Ramen"}
+             onChange={(e) => updateForm({ category: e.target.value })}
+           />
+           <label htmlFor="Ramen" className="form-check-label">Ramen</label>
+         </div>            
+         <div className="form-check form-check-inline">
            <input
              className="form-check-input"
              type="radio"
