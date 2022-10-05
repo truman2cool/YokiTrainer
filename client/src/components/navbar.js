@@ -54,7 +54,7 @@ return (
           </li>
           <li className='nav-item'>
             <Link
-              to='/context/recordList'
+              to='/menu'
               className='nav-links'
               onClick={closeMobileMenu}
             >
@@ -68,15 +68,6 @@ return (
               onClick={closeMobileMenu}
             >
               Create
-            </Link>
-          </li>
-          <li>
-            <Link
-              to='/login'
-              className='nav-links-mobile'
-              onClick={closeMobileMenu}
-            >
-              Login
             </Link>
           </li>
         </ul>

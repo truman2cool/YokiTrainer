@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
  
-const Record = (props) => (
+const Employee = (props) => (
  <tr>
-   <td>{props.record.name}</td>
-   <td>{props.record.email}</td>
+   <td>{props.employee.email}</td>
    <td>
-     <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
+     <Link className="btn btn-link" to={`/edit/${props.employee._id}`}>Edit</Link> |
      <button className="btn btn-link"
        onClick={() => {
-         props.deleteRecord(props.record._id);
+         props.deleteEmployee(props.employee._id);
        }}
      >
        Delete
@@ -18,13 +17,13 @@ const Record = (props) => (
  </tr>
 );
  
-export default function RecordList() {
- const [records, setRecords] = useState([]);
+export default function EmployeeList() {
+ const [employees, setEmployee] = useState([]);
  
  // This method fetches the records from the database.
  useEffect(() => {
-   async function getRecords() {
-     const response = await fetch(`http://localhost:5000/users/`);
+   async function getEmployee() {
+     const response = await fetch(`http://localhost:5000/employee/`);
  
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
@@ -32,33 +31,33 @@ export default function RecordList() {
        return;
      }
  
-     const records = await response.json();
-     setRecords(records);
+     const employees = await response.json();
+     setEmployee(employees);
    }
  
-   getRecords();
+   getEmployee();
  
    return;
- }, [records.length]);
+ }, [employees.length]);
  
  // This method will delete a record
- async function deleteRecord(id) {
+ async function deleteEmployee(id) {
    await fetch(`http://localhost:5000/${id}`, {
      method: "DELETE"
    });
  
-   const newRecords = records.filter((el) => el._id !== id);
-   setRecords(newRecords);
+   const newEmployees = employees.filter((el) => el._id !== id);
+   setEmployee(newEmployees);
  }
  
  // This method will map out the records on the table
  function employeeList() {
-   return records.map((record) => {
+   return employees.map((employee) => {
      return (
-       <Record
-         record={record}
-         deleteRecord={() => deleteRecord(record._id)}
-         key={record._id}
+       <Employee
+         employee={employee}
+         deleteEmployee={() => deleteEmployee(employee._id)}
+         key={employee._id}
        />
      );
    });
@@ -71,7 +70,6 @@ export default function RecordList() {
      <table className="table table-striped" style={{ marginTop: 20 }}>
        <thead>
          <tr>
-           <th>Name</th>
            <th>Email</th>
            <th>Action</th>
          </tr>

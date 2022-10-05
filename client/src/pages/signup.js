@@ -3,25 +3,24 @@ import { useNavigate } from "react-router";
 
 export default function Signup() {
 
-  const [user, setForm] = useState({
+  const [user, setUser] = useState({
     email: "",
     password:"",
 })
-
-
 const navigate = useNavigate();
 
 // These methods will update the state properties.
-function updateForm(value) {
-    return setForm((prev) => {
+function updateUser(value) {
+    return setUser((prev) => {
       return { ...prev, ...value };
     });
   }
 
+ // This function will handle the submission.
 async function onSubmit(e){
     e.preventDefault()
 
-   // When a post request is sent to the create url, we'll add a new record to the database.
+// When a post request is sent to the create url, we'll add a new record to the database.
 const newUser = { ...user };
 
 await fetch("http://localhost:5000/employee/add", {
@@ -36,21 +35,21 @@ await fetch("http://localhost:5000/employee/add", {
  return;
 });
 
-setForm({ email: "", password: ""});
-navigate("../context/employeeList");
+setUser({ email: "", password: ""});
+navigate("/login");
 }
 
 //display form
 return (
   <div>
       <h3>Sign up</h3>
-          <form className="signup" onSubmit={onSubmit}>
+        <form className="signup" onSubmit={onSubmit}>
           <label>Email:</label>
           <div>
           <input
               type = "email"
               id="email"
-              onChange={(e) => updateForm({email: e.target.value})}
+              onChange={(e) => updateUser({email: e.target.value})}
               value={user.email}
               />
           </div>
@@ -59,13 +58,18 @@ return (
               <input
               type = "password"
               id="password"
-              onChange={(e) => updateForm({password: e.target.value})}
+              onChange={(e) => updateUser({password: e.target.value})}
               value={user.password}
               />
           </div>
-
-  </form>
-  <button>Sign up</button>
+          <div className="form-group">
+            <input
+              type = "submit"
+              value= "Sign up"
+              className="btn btn-primary"
+            />
+          </div>
+        </form>
   </div>
 )
 };

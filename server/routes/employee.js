@@ -22,7 +22,7 @@ employeeRoutes.route("/employee").get(function (req, res){
 });
 
 // This section will help you get a single record by id
-recordRoutes.route("/employee/:id").get(function (req, res) {
+employeeRoutes.route("/employee/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
   db_connect
@@ -34,16 +34,12 @@ recordRoutes.route("/employee/:id").get(function (req, res) {
  });
 
 // This section will help you create a new record.
-recordRoutes.route("/employee/add").post(function (req, response) {
+employeeRoutes.route("/employee/add").post(function (req, response) {
     let db_connect = dbo.getDb();
     let myobj = {
         email: req.body.email,
-        password: unique.req.body.password,
-        name: req.body.name,
-        birthday: req.body.birthday,
-        position: body.position,
-        phone: req.body.phone,
-    };
+        password: req.body.password,
+    }
     db_connect.collection("Users").insertOne(myobj, function (err, res) {
       if (err) throw err;
       response.json(res);
@@ -51,17 +47,13 @@ recordRoutes.route("/employee/add").post(function (req, response) {
    });
     
    // This section will help you update a record by id.
-   recordRoutes.route("/update/:id").post(function (req, response) {
+    employeeRoutes.route("/update/:id").post(function (req, response) {
     let db_connect = dbo.getDb();
-    let myquery = { _id: ObjectId(req.params.id) };
+    let myquery = { _id: email };
     let newvalues = {
       $set: {
         username: req.body.username,
-        password: unique.req.body.password,
-        name: req.body.name,
-        birthday: req.body.birthday,
-        position: body.position,
-        phone: req.body.phone,
+        password: req.body.password,
       },
     };
     db_connect
@@ -74,7 +66,7 @@ recordRoutes.route("/employee/add").post(function (req, response) {
    });
     
    // This section will help you delete a record
-   recordRoutes.route("/:id").delete((req, response) => {
+   employeeRoutes.route("/:id").delete((req, response) => {
     let db_connect = dbo.getDb();
     let myquery = { _id: ObjectId(req.params.id) };
     db_connect.collection("Users").deleteOne(myquery, function (err, obj) {

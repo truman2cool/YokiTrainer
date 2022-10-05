@@ -4,20 +4,18 @@ import { Link } from "react-router-dom";
 
 export default function Login() {
 
-    const [user, setForm] = useState({
-        email: "",
-        password:"",
-    })
+  const [user, setUser] = useState({
+    email: "",
+    password:"",
+})
+const navigate = useNavigate();
 
-
-    const navigate = useNavigate();
-
-    // These methods will update the state properties.
-    function updateForm(value) {
-        return setForm((prev) => {
-          return { ...prev, ...value };
-        });
-      }
+// These methods will update the state properties.
+function updateUser(value) {
+    return setUser((prev) => {
+      return { ...prev, ...value };
+    });
+  }
 
     async function onSubmit(e){
         e.preventDefault()
@@ -25,7 +23,7 @@ export default function Login() {
        // When a post request is sent to the create url, we'll add a new record to the database.
    const newUser = { ...user };
  
-   await fetch("http://localhost:5000/employee/add", {
+   await fetch("http://localhost:5000/employee/:id", {
      method: "POST",
      headers: {
        "Content-Type": "application/json",
@@ -37,8 +35,8 @@ export default function Login() {
      return;
    });
  
-   setForm({ email: "", password: ""});
-   navigate("../context/employeeList");
+   setUser({ email: "", password: ""});
+   navigate("/menu");
  }
 
  //display form
@@ -51,7 +49,7 @@ export default function Login() {
             <input
                 type = "email"
                 id="email"
-                onChange={(e) => updateForm({email: e.target.value})}
+                onChange={(e) => updateUser({email: e.target.value})}
                 value={user.email}
                 />
             </div>
@@ -60,15 +58,21 @@ export default function Login() {
                 <input
                 type = "password"
                 id="password"
-                onChange={(e) => updateForm({password: e.target.value})}
+                onChange={(e) => updateUser({password: e.target.value})}
                 value={user.password}
                 />
             </div>
+            <div className="form-group">
+            <input
+              type = "submit"
+              value= "Log in"
+              className="btn btn-primary"
+            />
+          </div>
             </form>
-        <button>Log in</button>
         <div>            
             <label>Don't have an account?</label>
-                <Link to="/signup"> Signup</Link>
+                <Link to="/signup"> Sign up</Link>
             </div>
         </div>
     )
