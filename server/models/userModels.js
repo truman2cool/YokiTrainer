@@ -20,6 +20,7 @@ userSchema.statics.signup = async (email, password)=>{
     if(exists){
         throw Error("Email is already in use");
     }
+    //npm i bcrpyt
 }
 
 module.exports = mongoose.model('User', userSchema);
