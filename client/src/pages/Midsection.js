@@ -1,7 +1,7 @@
 import React from 'react';
-import '../App.css';
+import '../css/App.css';
 import { Button } from '../components/button';
-import './Midsection.css';
+import '../css/Midsection.css';
 
 function Midsection() {
   return (

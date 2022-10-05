@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
- 
+//import "bootstrap/dist/css/bootstrap.css";
+
 export default function Edit() {
  const [form, setForm] = useState({
    name: "",
@@ -95,12 +96,46 @@ export default function Edit() {
              className="form-check-input"
              type="radio"
              name="category"
-             id="categoryFood"
-             value="food"
-             checked={form.category === "food"}
+             id="categoryTapas"
+             value="Tapas"
+             checked={form.category === "Tapas"}
              onChange={(e) => updateForm({ category: e.target.value })}
            />
-           <label htmlFor="categoryFood" className="form-check-label">Food</label>
+           <label htmlFor="tapas" className="form-check-label">Tapas</label>
+         </div>
+         <div className="form-check form-check-inline">
+           <input
+             className="form-check-input"
+             type="radio"
+             name="category"
+             id="categoryMaki"
+             value="Maki"
+             checked={form.category === "Maki"}
+             onChange={(e) => updateForm({ category: e.target.value })}
+           />
+           <label htmlFor="sushi" className="form-check-label">Maki</label>
+         </div>         <div className="form-check form-check-inline">
+           <input
+             className="form-check-input"
+             type="radio"
+             name="category"
+             id="categorySushi"
+             value="Sushi"
+             checked={form.category === "Sushi"}
+             onChange={(e) => updateForm({ category: e.target.value })}
+           />
+           <label htmlFor="cocktail" className="form-check-label">Sushi</label>
+         </div>         <div className="form-check form-check-inline">
+           <input
+             className="form-check-input"
+             type="radio"
+             name="category"
+             id="categoryCocktail"
+             value="Cocktail"
+             checked={form.category === "Cocktail"}
+             onChange={(e) => updateForm({ category: e.target.value })}
+           />
+           <label htmlFor="categoryDrink" className="form-check-label">Cocktail</label>
          </div>
          <div className="form-check form-check-inline">
            <input
@@ -108,11 +143,11 @@ export default function Edit() {
              type="radio"
              name="category"
              id="categoryDrink"
-             value="drink"
-             checked={form.category === "drink"}
+             value="Martini"
+             checked={form.category === "Martini"}
              onChange={(e) => updateForm({ category: e.target.value })}
            />
-           <label htmlFor="categoryDrink" className="form-check-label">Drink</label>
+           <label htmlFor="martini" className="form-check-label">Martini</label>
          </div>
        </div>
        <br />
