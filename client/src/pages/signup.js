@@ -44,6 +44,15 @@ return (
   <div>
       <h3>Sign up</h3>
         <form className="signup" onSubmit={onSubmit}>
+        <label>Username:</label>
+          <div>
+          <input
+              type = "username"
+              id="username"
+              onChange={(e) => updateUser({username: e.target.value})}
+              value={user.username}
+              />
+          </div>
           <label>Email:</label>
           <div>
           <input
@@ -51,6 +60,15 @@ return (
               id="email"
               onChange={(e) => updateUser({email: e.target.value})}
               value={user.email}
+              />
+          </div>
+          <label>Full name:</label>
+          <div>
+          <input
+              type = "fullname"
+              id="fullname"
+              onChange={(e) => updateUser({fullname: e.target.value})}
+              value={user.fullname}
               />
           </div>
           <label>Password:</label>

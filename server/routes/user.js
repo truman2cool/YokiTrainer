@@ -1,5 +1,5 @@
 const express = require("express");
-const userModel = require("../models/userModel");
+const signupController = require("../controllers/signupController");
 
 //use to define our routes and as a middleware to take care of communication
 const userRoutes = express.Router();
@@ -34,27 +34,16 @@ userRoutes.route("/user/:id").get(function (req, res) {
     });
  });
 
-/*const handleNewUser = async (req, res) =>{
-  const {user, pwd}= req.body;
-  if(!user || !pwd) return res.status(400).json({"message":"email and password are required"})
-  // check for duplicate usernames in the db
-  const duplicate = usersDB.users.find(person=> person.email === user);
-  if(duplicate) return res.sendStatus(409); //conflict
-  try{
-    //encrypt the password
-    const hashedPwd = await bcrypt.hash(pwd, 10);
-  }
-}*/
-
 // This section will help you create a new record.
-userRoutes.route("/user/add").post(function (req, response) {
+/*userRoutes.route("/user/add").post(function (req, response) {
     let db_connect = dbo.getDb();
     let myobj = userModel(req);
     db_connect.collection("Users").insertOne(myobj, function (err, res) {
       if (err) throw err;
       response.json(res);
     });
-   });
+   });*/
+   userRoutes.route("/user/add").post(signupController.handleNewUser);
     
    // This section will help you update a record by id.
     userRoutes.route("/update/:id").post(function (req, response) {
