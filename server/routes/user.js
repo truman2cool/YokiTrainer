@@ -5,7 +5,8 @@ const userRoutes = express.Router();
 
 //connect to database
 const dbo = require("../db/conn");
-const { default: userModel } = require("../models/userModel");
+const userModel = require("../models/userModel");
+//const { userModel } = require("../models/userModel");
 
 //help convert the id from string to ObjectId
 const ObjectId = require("mongodb").ObjectId;
@@ -37,7 +38,7 @@ userRoutes.route("/user/:id").get(function (req, res) {
 // This section will help you create a new record.
 userRoutes.route("/user/add").post(function (req, response) {
     let db_connect = dbo.getDb();
-    let myobj = userModel;
+    let myobj = userModel(req);
     db_connect.collection("Users").insertOne(myobj, function (err, res) {
       if (err) throw err;
       response.json(res);
