@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 
 export default function Signup() {
   const [user, setUser] = useState({
+    username:"",
     email: "",
+    fullname:"",
     password:"",
   })
 const navigate = useNavigate();
@@ -35,7 +37,7 @@ await fetch("http://localhost:5000/employee/add", {
  return;
 });
 
-setUser({ email: "", password: ""});
+setUser({username:"", email: "", fullname:"", password:""});
 navigate("/login");
 }
 

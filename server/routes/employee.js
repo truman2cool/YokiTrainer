@@ -37,7 +37,9 @@ employeeRoutes.route("/employee/:id").get(function (req, res) {
 employeeRoutes.route("/employee/add").post(function (req, response) {
     let db_connect = dbo.getDb();
     let myobj = {
+        username: req.body.username,
         email: req.body.email,
+        fullname: req.body.fullname,
         password: req.body.password,
     }
     db_connect.collection("Users").insertOne(myobj, function (err, res) {
