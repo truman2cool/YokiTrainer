@@ -1,12 +1,11 @@
 const express = require("express");
+const userModel = require("../models/userModel");
 
 //use to define our routes and as a middleware to take care of communication
 const userRoutes = express.Router();
 
 //connect to database
 const dbo = require("../db/conn");
-const userModel = require("../models/userModel");
-//const { userModel } = require("../models/userModel");
 
 //help convert the id from string to ObjectId
 const ObjectId = require("mongodb").ObjectId;
@@ -34,6 +33,18 @@ userRoutes.route("/user/:id").get(function (req, res) {
       res.json(result);
     });
  });
+
+/*const handleNewUser = async (req, res) =>{
+  const {user, pwd}= req.body;
+  if(!user || !pwd) return res.status(400).json({"message":"email and password are required"})
+  // check for duplicate usernames in the db
+  const duplicate = usersDB.users.find(person=> person.email === user);
+  if(duplicate) return res.sendStatus(409); //conflict
+  try{
+    //encrypt the password
+    const hashedPwd = await bcrypt.hash(pwd, 10);
+  }
+}*/
 
 // This section will help you create a new record.
 userRoutes.route("/user/add").post(function (req, response) {

@@ -3,11 +3,10 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 export default function Signup() {
-
   const [user, setUser] = useState({
     email: "",
     password:"",
-})
+  })
 const navigate = useNavigate();
 
 // These methods will update the state properties.
