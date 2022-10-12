@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
 
@@ -69,6 +70,10 @@ return (
               className="btn btn-primary"
             />
           </div>
+          <div>            
+            <label>Already have an account?</label>
+                <Link to="/login"> Login</Link>
+            </div>
         </form>
   </div>
 )

@@ -12,7 +12,6 @@ import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Navbar from "./components/navbar";
 import Menu from "./pages/menu";
-import EmployeeList from "./context/employeeList";
 import About from "./pages/about";
 
 
@@ -29,7 +28,6 @@ function App () {
           <Route path="/context/recordList" element={<RecordList/>} />
           <Route path="/edit/:id" element={<Edit />} />
           <Route path="/menu" element={<Menu />} />
-          <Route path="/employeeList" element={<EmployeeList />} />
           <Route path="/create" element={<Create />} /> 
           <Route path="/about" element={<About />} />
         </Routes>
