@@ -5,7 +5,6 @@ import { Route, Routes} from "react-router-dom";
 
 // We import all the components we need in our app
 import Home from "./pages/home";
-import RecordList from "./context/recordList";
 import Edit from "./components/edit";
 import Create from "./components/create";
 import Login from "./pages/login";
@@ -25,7 +24,6 @@ function App () {
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/context/recordList" element={<RecordList/>} />
           <Route path="/edit/:id" element={<Edit />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/create" element={<Create />} /> 
