@@ -36,7 +36,7 @@ export default function Create() {
    });
  
    setForm({ name: "", description: "", category: "" });
-   navigate("../context/recordList");
+   navigate("../menu");
  }
  
  // This following section will display the form that takes the input from the user.

@@ -46,6 +46,7 @@ userRoutes.route("/user/add").post(function (req, response) {
       response.json(res);
     });
    });
+
    //userRoutes.route("/user/add").post(signupController.handleNewUser);
     
    // This section will help you update a record by id.

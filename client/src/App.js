@@ -15,15 +15,14 @@ import About from "./pages/about";
 
 
 function App () {
-
  return (
    <div className="App"> 
       <div className="pages">  
       <Navbar />
         <Routes>      
           <Route exact path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login /> } />
           <Route path="/edit/:id" element={<Edit />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/create" element={<Create />} /> 
