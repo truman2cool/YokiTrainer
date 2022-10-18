@@ -25,7 +25,7 @@ async function onSubmit(e){
 // When a post request is sent to the create url, we'll add a new record to the database.
 const newUser = { ...user };
 
-await fetch("http://localhost:5000/employee/add", {
+ await fetch("http://localhost:5000/employee/add", {
  method: "POST",
  headers: {
    "Content-Type": "application/json",
