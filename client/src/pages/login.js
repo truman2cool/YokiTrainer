@@ -51,6 +51,7 @@ function updateUser(value) {
                 id="email"
                 onChange={(e) => updateUser({email: e.target.value})}
                 value={user.email}
+                required
                 />
             </div>
             <label>Password:</label>
@@ -60,6 +61,7 @@ function updateUser(value) {
                 id="password"
                 onChange={(e) => updateUser({password: e.target.value})}
                 value={user.password}
+                required
                 />
             </div>
             <div className="form-group">

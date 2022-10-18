@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import "../css/form.css";
+import { ValidatorForm } from 'react-form-validator-core';
 
 export default function Signup() {
   const [user, setUser] = useState({
@@ -14,7 +16,7 @@ const navigate = useNavigate();
 // These methods will update the state properties.
 function updateUser(value) {
     return setUser((prev) => {
-      return { ...prev, ...value };
+      return { ...prev, ...value }
     });
   }
 
@@ -52,6 +54,7 @@ return (
               id="username"
               onChange={(e) => updateUser({username: e.target.value})}
               value={user.username}
+              required
               />
           </div>
           <label>Email:</label>
@@ -61,6 +64,7 @@ return (
               id="email"
               onChange={(e) => updateUser({email: e.target.value})}
               value={user.email}
+              required
               />
           </div>
           <label>Full name:</label>
@@ -70,6 +74,7 @@ return (
               id="fullname"
               onChange={(e) => updateUser({fullname: e.target.value})}
               value={user.fullname}
+              required
               />
           </div>
           <label>Password:</label>
@@ -79,6 +84,7 @@ return (
               id="password"
               onChange={(e) => updateUser({password: e.target.value})}
               value={user.password}
+              required
               />
           </div>
           <div className="form-group">

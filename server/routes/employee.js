@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const validation = require("validator");
 //use to define our routes and as a middleware to take care of communication
 const employeeRoutes = express.Router();
 
@@ -60,12 +61,18 @@ employeeRoutes.route("/employee/add").post(function (req, res) {
     if (!username || !email || !fullname || !password) {
       return res.status(400).json({ msg: "Please enter all fields" });
     }
+    // check email
+    if(!validation.isEmail(email)){
+      return res.status(400).json({msg: "Email not valid"})
+    }
     //Check password length
     if (password.length < 6) {
       return res.status(400).json({ msg: "Password should be atleast 6 characters long" });
     }
-    User.findOne({ username: username }).then((user) => {
-      if (user) return res.status(400).json({ msg: "Username already exists" });
+    //checks username
+    User.findOne({ username: username } || {email: email}).then((user) => {
+      if (user) return res.status(400).json({ msg: "Username or Email is already exists" });
+      
     //New User created
     const newUser = new User({
       username,
@@ -82,7 +89,7 @@ employeeRoutes.route("/employee/add").post(function (req, res) {
         newUser.password = hash;
         // Save user
         newUser.save().then(res.json({msg: "Successfully Registered"}))
-          .catch((err) => console.log(err));
+          .catch((err) => console.log("Unsuccessful, please try again"));
         })
         );
         //db_connect.collection("Users").insertOne(newUser);
