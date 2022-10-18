@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import "../css/form.css";
-import { ValidatorForm } from 'react-form-validator-core';
+//import { ValidatorForm } from 'react-form-validator-core';
 
 export default function Signup() {
   const [user, setUser] = useState({
