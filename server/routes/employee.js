@@ -1,5 +1,4 @@
 const express = require("express");
-const signupController = require("../controllers/signupController");
 const bcrypt = require("bcrypt");
 //use to define our routes and as a middleware to take care of communication
 const employeeRoutes = express.Router();
@@ -52,7 +51,7 @@ employeeRoutes.route("/employee/:id").get(function (req, res) {
    });*/
 
 
-// This section will help you create a new record.
+// This section will help you create a new user.
 employeeRoutes.route("/employee/add").post(function (req, res) {
     let db_connect = dbo.getDb();
     const { username, email, fullname, password } = req.body;
@@ -90,7 +89,46 @@ employeeRoutes.route("/employee/add").post(function (req, res) {
     });
 });
 
-  //employeeRoutes.route("/employee/add").post(signupController.handleNewUser);
+employeeRoutes.post("/login", (req, res) => {
+  const { email, password } = req.body;
+
+  // basic validation
+  if (!email || !password) {
+    return res.status(400).json({ msg: "Please enter all fields" });
+  }
+  //check for existing user
+  User.findOne({ email }).then((user) => {
+    if (!user) return res.status(400).json({ msg: "User does not exist" });
+
+    // Validate password
+    bcrypt.compare(password, user.password).then((isMatch) => {
+      if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
+
+      const sessUser = { id: user.id, name: user.name, email: user.email };
+      req.session.user = sessUser; // Auto saves session data in mongo store
+
+      res.json({ msg: " Logged In Successfully", sessUser }); // sends cookie with sessionID automatically in response
+    });
+  });
+});
+
+employeeRoutes.delete("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    //delete session data from store, using sessionID in cookie
+    if (err) throw err;
+    res.clearCookie("session-id"); // clears cookie containing expired sessionID
+    res.send("Logged out successfully");
+  });
+});
+
+employeeRoutes.get("/authchecker", (req, res) => {
+  const sessUser = req.session.user;
+  if (sessUser) {
+    return res.json({ msg: " Authenticated Successfully", sessUser });
+  } else {
+    return res.status(401).json({ msg: "Unauthorized" });
+  }
+});
 
    // This section will help you update a record by id.
     employeeRoutes.route("/update/:id").post(function (req, response) {
@@ -123,5 +161,6 @@ employeeRoutes.route("/employee/add").post(function (req, res) {
       response.json(obj);
     });
    });
-    
+
+
    module.exports = employeeRoutes;
