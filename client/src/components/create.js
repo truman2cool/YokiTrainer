@@ -51,6 +51,7 @@ export default function Create() {
            className="form-control"
            id="name"
            value={form.name}
+           required
            onChange={(e) => updateForm({ name: e.target.value })}
          />
        </div>
@@ -61,6 +62,7 @@ export default function Create() {
            className="form-control"
            id="description"
            value={form.description}
+           required
            onChange={(e) => updateForm({ description: e.target.value })}
          />
        </div>

@@ -92,34 +92,32 @@ employeeRoutes.route("/employee/add").post(function (req, res) {
           .catch((err) => console.log("Unsuccessful, please try again"));
         })
         );
-        //db_connect.collection("Users").insertOne(newUser);
     });
 });
 
-employeeRoutes.post("/login", (req, res) => {
-  const { email, password } = req.body;
-
+employeeRoutes.route("/employee/login").post(function (req, res) {
+  console.log(req.sessionID);
+  const { username, password } = req.body;
   // basic validation
-  if (!email || !password) {
+  if (!username || !password) {
     return res.status(400).json({ msg: "Please enter all fields" });
   }
   //check for existing user
-  User.findOne({ email }).then((user) => {
+  User.findOne({ username }).then((user) => {
     if (!user) return res.status(400).json({ msg: "User does not exist" });
 
     // Validate password
     bcrypt.compare(password, user.password).then((isMatch) => {
       if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
 
-      const sessUser = { id: user.id, name: user.name, email: user.email };
-      req.session.user = sessUser; // Auto saves session data in mongo store
-
+      const sessUser = { username: user.username, fullname: user.fullname};
+      req.session.sessUser = sessUser; // Auto saves session data
       res.json({ msg: " Logged In Successfully", sessUser }); // sends cookie with sessionID automatically in response
     });
   });
 });
 
-employeeRoutes.delete("/logout", (req, res) => {
+employeeRoutes.route("/employee/logout").post(function (req, res){
   req.session.destroy((err) => {
     //delete session data from store, using sessionID in cookie
     if (err) throw err;
@@ -128,7 +126,7 @@ employeeRoutes.delete("/logout", (req, res) => {
   });
 });
 
-employeeRoutes.get("/authchecker", (req, res) => {
+employeeRoutes.route("/employee/authchecker").post(function (req, res) {
   const sessUser = req.session.user;
   if (sessUser) {
     return res.json({ msg: " Authenticated Successfully", sessUser });
