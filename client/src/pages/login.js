@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-
 export default function Login() {
 
   const [user, setUser] = useState({
-    email: "",
+    username: "",
     password:"",
 })
 const navigate = useNavigate();
@@ -19,11 +18,11 @@ function updateUser(value) {
 
     async function onSubmit(e){
         e.preventDefault()
-
-       // When a post request is sent to the create url, we'll add a new record to the database.
-   const newUser = { ...user };
+        console.log(user);
+      // When a post request is sent to the create url, we'll add a new record to the database.
+      const newUser = { ...user };
  
-   await fetch("http://localhost:5000/employee/:id", {
+   await fetch("http://localhost:5000/employee/login", {
      method: "POST",
      headers: {
        "Content-Type": "application/json",
@@ -34,7 +33,7 @@ function updateUser(value) {
      window.alert(error);
      return;
    });
- 
+
    setUser({ username: "", password: ""});
    navigate("/menu");
  }
@@ -49,8 +48,8 @@ function updateUser(value) {
             <input
                 type = "username"
                 id="username"
-                placeholder="your@email.com"
-                onChange={(e) => updateUser({email: e.target.value})}
+                placeholder="username"
+                onChange={(e) => updateUser({username: e.target.value})}
                 value={user.username}
                 required
                 />
