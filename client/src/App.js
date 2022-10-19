@@ -5,6 +5,8 @@ import { Route, Routes} from "react-router-dom";
 
 // We import all the components we need in our app
 import Home from "./pages/home";
+import Landing from "./pages/landing";
+import Userpage from "./pages/userpage"
 import Edit from "./components/edit";
 import Create from "./components/create";
 import Login from "./pages/login";
@@ -21,6 +23,8 @@ function App () {
       <Navbar />
         <Routes>      
           <Route exact path="/" element={<Home />} />
+          <Route path="/landing" element={<Landing />} />
+          <Route path="/userpage" element={<Userpage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login /> } />
           <Route path="/edit/:id" element={<Edit />} />
