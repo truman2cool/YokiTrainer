@@ -42,13 +42,14 @@ function updateUser(value) {
  //display form
   return (
     <div>
-        <h3>Log in</h3>
+        <h3><strong>Log in</strong></h3>
             <form className="login" onSubmit={onSubmit}>
             <label>Username:</label>
             <div>
             <input
                 type = "username"
                 id="username"
+                placeholder="your@email.com"
                 onChange={(e) => updateUser({email: e.target.value})}
                 value={user.username}
                 required
@@ -59,6 +60,7 @@ function updateUser(value) {
                 <input
                 type = "password"
                 id="password"
+                placeholder="Enter you Password"
                 onChange={(e) => updateUser({password: e.target.value})}
                 value={user.password}
                 required

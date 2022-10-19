@@ -52,6 +52,7 @@ return (
           <input
               type = "username"
               id="username"
+              placeholder='Enter username'
               onChange={(e) => updateUser({username: e.target.value})}
               value={user.username}
               required
@@ -62,6 +63,7 @@ return (
           <input
               type = "email"
               id="email"
+              placeholder='Enter an email'
               onChange={(e) => updateUser({email: e.target.value})}
               value={user.email}
               required
@@ -72,6 +74,7 @@ return (
           <input
               type = "fullname"
               id="fullname"
+              placeholder='Enter full name'
               onChange={(e) => updateUser({fullname: e.target.value})}
               value={user.fullname}
               required
@@ -82,6 +85,7 @@ return (
               <input
               type = "password"
               id="password"
+              placeholder="Enter a password"
               onChange={(e) => updateUser({password: e.target.value})}
               value={user.password}
               required
