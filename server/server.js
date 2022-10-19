@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 //session import
 const session = require("express-session");
-const store = ATLAS_URI;
+const store = require('connect-mongodb-session')(session);
 // relax the security applied to an API
 const cors = require("cors");
 //loads env variable into a process.env
@@ -12,8 +12,9 @@ const port = process.env.PORT || 5000;
 const dbo = require("./db/conn");
 
 app.use(cors());
-app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 
 //Express-Session
 const MAX_AGE = 1000 * 60 * 60 * 1; // 1000ms*60second*60min*1hr=1hr
@@ -22,12 +23,14 @@ app.use(session({
   secret:"CAPSTONE",
   resave: true,
   saveUninitialized: false,
+  store: new store({
+    mongoUrl: process.env.ATLAS_URI
+  }),
   cookie:{
     maxAge: MAX_AGE,
       sameSite: false,
-      secure: true
-  },  
-  store
+      //secure: ,
+  }
 }));
 
 //routes
