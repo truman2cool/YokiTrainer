@@ -15,8 +15,8 @@ const Db = process.env.ATLAS_URI;
 // setting up connect-mongodb-session store
 const store = new MongoDBStore({
   uri: Db,
-  databaseName:"Yoki",
-  collection: "users"
+  databaseName:"sessions",
+  collection: "userSession"
 });
 
 app.use(cors());
