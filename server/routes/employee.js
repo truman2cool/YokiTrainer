@@ -97,7 +97,7 @@ employeeRoutes.route("/employee/add").post(function (req, res) {
 
 employeeRoutes.route("/employee/login").post(function (req, res) {
   console.log(req.sessionID);
-  const { username, password } = req.body;
+  const { username, email, password } = req.body;
   // basic validation
   if (!username || !password) {
     return res.status(400).json({ msg: "Please enter all fields" });
@@ -105,7 +105,6 @@ employeeRoutes.route("/employee/login").post(function (req, res) {
   //check for existing user
   User.findOne({ username }).then((user) => {
     if (!user) return res.status(400).json({ msg: "User does not exist" });
-
     // Validate password
     bcrypt.compare(password, user.password).then((isMatch) => {
       if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });

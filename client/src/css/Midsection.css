@@ -17,7 +17,6 @@ video {
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
   object-fit: contain;
 }
-
 .hero-container > h1 {
   color: #fff;
   font-size: 100px;
@@ -30,6 +29,36 @@ video {
   font-size: 32px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
+}
+
+.hero2-container {
+  background-image:image('/images/img-home.jpg');
+  height: 100vh;
+  width: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0);
+  object-fit: contain;
+}
+
+.hero2-container > h1 {
+  color: black;
+  font-size: 50px;
+  margin-top: -600px;
+  align-self: center;
+}
+
+.hero2-container > p {
+  margin-top: 4px;
+  color: #fff;
+  font-size: 32px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+    align-self: center;
 }
 
 .hero-btns {

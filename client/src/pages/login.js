@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+//import Button from "../components/button";
+
 export default function Login() {
 
   const [user, setUser] = useState({
     username: "",
     password:"",
 })
+
+
 const navigate = useNavigate();
 
 // These methods will update the state properties.
@@ -18,7 +22,6 @@ function updateUser(value) {
 
     async function onSubmit(e){
         e.preventDefault()
-        console.log(user);
       // When a post request is sent to the create url, we'll add a new record to the database.
       const newUser = { ...user };
  
@@ -28,6 +31,9 @@ function updateUser(value) {
        "Content-Type": "application/json",
      },
      body: JSON.stringify(newUser),
+   }).then((response)=> response.json())
+   .then((user)=>{
+    console.log(user);
    })
    .catch(error => {
      window.alert(error);
@@ -35,7 +41,7 @@ function updateUser(value) {
    });
 
    setUser({ username: "", password: ""});
-   navigate("/menu");
+   navigate("/dashboard")
  }
 
  //display form
@@ -60,6 +66,8 @@ function updateUser(value) {
                 type = "password"
                 id="password"
                 placeholder="Enter you Password"
+                autoComplete="current-password"
+                ng-hide="true"
                 onChange={(e) => updateUser({password: e.target.value})}
                 value={user.password}
                 required

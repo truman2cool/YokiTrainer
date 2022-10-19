@@ -21,7 +21,7 @@ navbar {
   .navbar-logo {
     color: #242424;
     justify-self: start;
-    margin-left: 5px;
+    margin-left: 0px;
     cursor: pointer;
     text-decoration: none;
     font-size: 2rem;
@@ -64,7 +64,7 @@ navbar {
   }
   
   .fa-bars {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
   }
   
   .nav-links-mobile {

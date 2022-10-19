@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
  
 // We import bootstrap to make our application look better.
 import "../css/navbar.css";
@@ -7,17 +7,17 @@ import "../css/navbar.css";
  
 // We import NavLink to utilize the react router.
 import { Link } from "react-router-dom";
-//import {Button } from "./button";
+import {Button } from "./button";
 
 // Here, we display our Navbar
 export default function Navbar() {
   const [click, setClick] =useState(false);
-  //const [button, setButton] =useState(true);
+  const [button, setButton] =useState(true);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  /*const showButton = () =>{
+  const showButton = () =>{
     if (window.innerWidth<=960){
       setButton(false);
     }else{
@@ -27,9 +27,9 @@ export default function Navbar() {
 
   useEffect(()=>{
     showButton();
-  },[]);*/
+  },[]);
 
-//window.addEventListener('resize', showButton);
+window.addEventListener('resize', showButton);
 
 return (
   <>
@@ -69,6 +69,7 @@ return (
             </Link>
           </li>
         </ul>
+        {button && <Button buttonStyle='btn2--outline'>Login</Button>}
       </div>
     </nav>
   </>

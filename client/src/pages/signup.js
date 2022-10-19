@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import {useSignup} from "../hooks/useSignup";
 import "../css/form.css";
-//import { ValidatorForm } from 'react-form-validator-core';
 
 export default function Signup() {
   const [user, setUser] = useState({
@@ -11,6 +11,8 @@ export default function Signup() {
     fullname:"",
     password:"",
   })
+  const {signup, error, isLoading}= useSignup()
+
 const navigate = useNavigate();
 
 // These methods will update the state properties.
@@ -23,6 +25,7 @@ function updateUser(value) {
  // This function will handle the submission.
 async function onSubmit(e){
     e.preventDefault()
+    await signup(user)
 // When a post request is sent to the create url, we'll add a new record to the database.
 const newUser = { ...user };
 
@@ -32,6 +35,9 @@ const newUser = { ...user };
    "Content-Type": "application/json",
  },
  body: JSON.stringify(newUser),
+}).then((response)=> response.json())
+.then((user)=>{
+ console.log(user);
 })
 .catch(error => {
  window.alert(error);
@@ -64,6 +70,7 @@ return (
               type = "email"
               id="email"
               placeholder='Enter an email'
+              autoComplete="email"
               onChange={(e) => updateUser({email: e.target.value})}
               value={user.email}
               required
@@ -86,12 +93,14 @@ return (
               type = "password"
               id="password"
               placeholder="Enter a password"
+              autoComplete="current-password"
+              ng-hide="true"
               onChange={(e) => updateUser({password: e.target.value})}
               value={user.password}
               required
               />
           </div>
-          <div className="form-group">
+          <div disabled={isLoading} className="form-group">
             <input
               type = "submit"
               value= "Sign up"
@@ -102,6 +111,7 @@ return (
             <label>Already have an account?</label>
                 <Link to="/login"> Login</Link>
             </div>
+            {error && <div className="error">{error}</div>}
         </form>
   </div>
 )
