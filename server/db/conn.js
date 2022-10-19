@@ -1,4 +1,5 @@
 const { MongoClient } = require("mongodb");
+const { default: mongoose } = require("mongoose");
 const Db = process.env.ATLAS_URI;
 const client = new MongoClient(Db, {
   useNewUrlParser: true,
@@ -6,7 +7,15 @@ const client = new MongoClient(Db, {
 });
  
 var _db;
- 
+mongoose.connect(Db,{
+  useNewUrlParser: true,
+  useUnifiedTopology: true, 
+  dbName: "Yoki",
+  }).then(()=>{
+    console.log("Mongo connected");
+  }).catch(err => console.error(err));
+
+
 module.exports = {
   connectToServer: function (callback) {
     client.connect(function (err, db) {

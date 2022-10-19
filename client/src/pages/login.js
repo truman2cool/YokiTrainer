@@ -35,7 +35,7 @@ function updateUser(value) {
      return;
    });
  
-   setUser({ email: "", password: ""});
+   setUser({ username: "", password: ""});
    navigate("/menu");
  }
 
@@ -44,13 +44,14 @@ function updateUser(value) {
     <div>
         <h3>Log in</h3>
             <form className="login" onSubmit={onSubmit}>
-            <label>Email:</label>
+            <label>Username:</label>
             <div>
             <input
-                type = "email"
-                id="email"
+                type = "username"
+                id="username"
                 onChange={(e) => updateUser({email: e.target.value})}
-                value={user.email}
+                value={user.username}
+                required
                 />
             </div>
             <label>Password:</label>
@@ -60,6 +61,7 @@ function updateUser(value) {
                 id="password"
                 onChange={(e) => updateUser({password: e.target.value})}
                 value={user.password}
+                required
                 />
             </div>
             <div className="form-group">

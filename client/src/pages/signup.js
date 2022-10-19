@@ -1,29 +1,32 @@
 import React, {useState} from 'react';
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import "../css/form.css";
+//import { ValidatorForm } from 'react-form-validator-core';
 
 export default function Signup() {
-
   const [user, setUser] = useState({
+    username:"",
     email: "",
+    fullname:"",
     password:"",
-})
+  })
 const navigate = useNavigate();
 
 // These methods will update the state properties.
 function updateUser(value) {
     return setUser((prev) => {
-      return { ...prev, ...value };
+      return { ...prev, ...value }
     });
   }
 
  // This function will handle the submission.
 async function onSubmit(e){
     e.preventDefault()
-
 // When a post request is sent to the create url, we'll add a new record to the database.
 const newUser = { ...user };
 
-await fetch("http://localhost:5000/employee/add", {
+ await fetch("http://localhost:5000/employee/add", {
  method: "POST",
  headers: {
    "Content-Type": "application/json",
@@ -35,7 +38,7 @@ await fetch("http://localhost:5000/employee/add", {
  return;
 });
 
-setUser({ email: "", password: ""});
+setUser({username:"", email: "", fullname:"", password:""});
 navigate("/login");
 }
 
@@ -44,6 +47,16 @@ return (
   <div>
       <h3>Sign up</h3>
         <form className="signup" onSubmit={onSubmit}>
+        <label>Username:</label>
+          <div>
+          <input
+              type = "username"
+              id="username"
+              onChange={(e) => updateUser({username: e.target.value})}
+              value={user.username}
+              required
+              />
+          </div>
           <label>Email:</label>
           <div>
           <input
@@ -51,6 +64,17 @@ return (
               id="email"
               onChange={(e) => updateUser({email: e.target.value})}
               value={user.email}
+              required
+              />
+          </div>
+          <label>Full name:</label>
+          <div>
+          <input
+              type = "fullname"
+              id="fullname"
+              onChange={(e) => updateUser({fullname: e.target.value})}
+              value={user.fullname}
+              required
               />
           </div>
           <label>Password:</label>
@@ -60,6 +84,7 @@ return (
               id="password"
               onChange={(e) => updateUser({password: e.target.value})}
               value={user.password}
+              required
               />
           </div>
           <div className="form-group">
@@ -69,6 +94,10 @@ return (
               className="btn btn-primary"
             />
           </div>
+          <div>            
+            <label>Already have an account?</label>
+                <Link to="/login"> Login</Link>
+            </div>
         </form>
   </div>
 )

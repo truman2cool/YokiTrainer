@@ -21,7 +21,7 @@ function Midsection() {
           className='btn'
           buttonStyle='btn--primary'
           buttonSize='btn--large'
-          onClick={console.log('hey')}
+          //onClick={console.log('hey')}
         >
           Check us out
         </Button2>

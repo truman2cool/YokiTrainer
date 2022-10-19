@@ -6,7 +6,7 @@ import "../css/navbar.css";
 
  
 // We import NavLink to utilize the react router.
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 //import {Button } from "./button";
 
 // Here, we display our Navbar
@@ -36,12 +36,10 @@ return (
     <nav className='navbar'>
       <div className='navbar-container'>
         <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-        <NavLink className="navbar-brand" to="/">
        <img style={{"width" : 25 + '%'}} 
         src="/yokio.jpg"
         alt="Yoki Logo">    
        </img>
-       </NavLink>
         </Link>
         <div className='menu-icon' onClick={handleClick}>
           <i className={click ? 'fas fa-times' : 'fas fa-bars'} />

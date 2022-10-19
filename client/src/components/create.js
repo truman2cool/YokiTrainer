@@ -36,7 +36,7 @@ export default function Create() {
    });
  
    setForm({ name: "", description: "", category: "" });
-   navigate("../context/recordList");
+   navigate("../menu");
  }
  
  // This following section will display the form that takes the input from the user.
@@ -51,6 +51,7 @@ export default function Create() {
            className="form-control"
            id="name"
            value={form.name}
+           required
            onChange={(e) => updateForm({ name: e.target.value })}
          />
        </div>
@@ -61,6 +62,7 @@ export default function Create() {
            className="form-control"
            id="description"
            value={form.description}
+           required
            onChange={(e) => updateForm({ description: e.target.value })}
          />
        </div>
