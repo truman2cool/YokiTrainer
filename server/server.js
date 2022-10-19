@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 //session import
 const session = require("express-session");
-const store = require('connect-mongodb-session')(session);
+const MongoDBStore = require('connect-mongodb-session')(session);
 // relax the security applied to an API
 const cors = require("cors");
 //loads env variable into a process.env
@@ -10,6 +10,14 @@ require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
 // get driver connection
 const dbo = require("./db/conn");
+const Db = process.env.ATLAS_URI;
+
+// setting up connect-mongodb-session store
+const store = new MongoDBStore({
+  uri: Db,
+  databaseName:"Yoki",
+  collection: "users"
+});
 
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
@@ -23,13 +31,10 @@ app.use(session({
   secret:"CAPSTONE",
   resave: true,
   saveUninitialized: false,
-  store: new store({
-    mongoUrl: process.env.ATLAS_URI
-  }),
+  store: store,
   cookie:{
     maxAge: MAX_AGE,
       sameSite: false,
-      //secure: ,
   }
 }));
 

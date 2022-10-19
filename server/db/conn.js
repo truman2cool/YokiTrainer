@@ -12,7 +12,7 @@ mongoose.connect(Db,{
   useUnifiedTopology: true, 
   dbName: "Yoki",
   }).then(()=>{
-    console.log("Mongo connected");
+    console.log("Mongoose connected");
   }).catch(err => console.error(err));
 
 
