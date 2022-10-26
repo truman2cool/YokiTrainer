@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+app.set("trust proxy",1)
+const cookieParser = require("cookie-parser");
 //session import
 const session = require("express-session");
 const MongoDBStore = require('connect-mongodb-session')(session);
@@ -19,9 +21,15 @@ const store = new MongoDBStore({
   collection: "userSession"
 });
 
-app.use(cors());
-app.use(express.urlencoded({ extended: false }));
+app.use(cors({
+  credentials: true,
+  origin:"http://localhost:3000",
+  optionsSuccessStatus:200,
+}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
+
 
 
 //Express-Session
@@ -33,10 +41,15 @@ app.use(session({
   saveUninitialized: false,
   store: store,
   cookie:{
-    maxAge: MAX_AGE,
-      sameSite: false,
+      maxAge: MAX_AGE,
+      httpOnly: true,
   }
 }));
+
+/*app.use((req,res,next)=>{
+  console.log(req.session);
+  next();
+})*/
 
 //routes
 app.use(require("./routes/record"));

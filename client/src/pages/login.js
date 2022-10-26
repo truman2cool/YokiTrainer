@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-//import Button from "../components/button";
 
 export default function Login() {
 
@@ -9,7 +8,6 @@ export default function Login() {
     username: "",
     password:"",
 })
-
 
 const navigate = useNavigate();
 
@@ -24,12 +22,12 @@ function updateUser(value) {
         e.preventDefault()
       // When a post request is sent to the create url, we'll add a new record to the database.
       const newUser = { ...user };
- 
-   await fetch("http://localhost:5000/employee/login", {
+   await fetch("http://localhost:5000/login", {
      method: "POST",
      headers: {
        "Content-Type": "application/json",
      },
+     credentials:'include',
      body: JSON.stringify(newUser),
    }).then((response)=> response.json())
    .then((user)=>{
@@ -40,8 +38,9 @@ function updateUser(value) {
      return;
    });
 
-   setUser({ username: "", password: ""});
-   navigate("/dashboard")
+  setUser({ username: "", password: ""});
+  navigate("/Dashboard")
+  
  }
 
  //display form

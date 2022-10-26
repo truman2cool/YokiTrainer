@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import '../css/Midsection.css';
 
-function dashboard(){
+function Dashboard(){
+
 return(
 <div className='hero2-container'>
 <h1>This is the dashboard of The Website</h1>
@@ -17,4 +18,4 @@ return(
       </p>
 </div>
 )};
-export default dashboard;
+export default Dashboard;

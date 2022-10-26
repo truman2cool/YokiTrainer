@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import {useSignup} from "../hooks/useSignup";
+//import {useSignup} from "../hooks/useSignup";
 import "../css/form.css";
 
 export default function Signup() {
@@ -11,7 +11,7 @@ export default function Signup() {
     fullname:"",
     password:"",
   })
-  const {signup, error, isLoading}= useSignup()
+  //const {signup, error, isLoading}= useSignup()
 
 const navigate = useNavigate();
 
@@ -25,11 +25,11 @@ function updateUser(value) {
  // This function will handle the submission.
 async function onSubmit(e){
     e.preventDefault()
-    await signup(user)
+    //await signup(user)
 // When a post request is sent to the create url, we'll add a new record to the database.
 const newUser = { ...user };
 
- await fetch("http://localhost:5000/employee/add", {
+ await fetch("/signup", {
  method: "POST",
  headers: {
    "Content-Type": "application/json",
@@ -100,7 +100,7 @@ return (
               required
               />
           </div>
-          <div disabled={isLoading} className="form-group">
+          <div className="form-group">
             <input
               type = "submit"
               value= "Sign up"
@@ -111,7 +111,6 @@ return (
             <label>Already have an account?</label>
                 <Link to="/login"> Login</Link>
             </div>
-            {error && <div className="error">{error}</div>}
         </form>
   </div>
 )

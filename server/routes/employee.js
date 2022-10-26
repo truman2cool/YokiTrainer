@@ -53,10 +53,9 @@ employeeRoutes.route("/employee/:id").get(function (req, res) {
 
 
 // This section will help you create a new user.
-employeeRoutes.route("/employee/add").post(function (req, res) {
+employeeRoutes.route("/signup").post(async function (req, res) {
     let db_connect = dbo.getDb();
-    const { username, email, fullname, password } = req.body;
-
+    const { username, email, fullname, password} = req.body;
     // Check required fields
     if (!username || !email || !fullname || !password) {
       return res.status(400).json({ msg: "Please enter all fields" });
@@ -78,7 +77,7 @@ employeeRoutes.route("/employee/add").post(function (req, res) {
       username,
       email,
       fullname,
-      password
+      password,
     });
 
     //Password hashing
@@ -88,35 +87,37 @@ employeeRoutes.route("/employee/add").post(function (req, res) {
 
         newUser.password = hash;
         // Save user
-        newUser.save().then(res.json({msg: "Successfully Registered"}))
+        newUser.save().then(res.json({msg: "Successfully Registered"}) && console.log("Successfully Registered"))
           .catch((err) => console.log("Unsuccessful, please try again"));
         })
         );
     });
 });
 
-employeeRoutes.route("/employee/login").post(function (req, res) {
-  console.log(req.sessionID);
-  const { username, email, password } = req.body;
+//login user
+employeeRoutes.route("/login").post(async function (req, res) {
+  const { username, password } = req.body;
   // basic validation
-  if (!username || !password) {
+  if (!username || !password ) {
     return res.status(400).json({ msg: "Please enter all fields" });
   }
   //check for existing user
   User.findOne({ username }).then((user) => {
-    if (!user) return res.status(400).json({ msg: "User does not exist" });
+    if (!user) return res.status(400).json({ msg: "Invalid crendentials" });
     // Validate password
     bcrypt.compare(password, user.password).then((isMatch) => {
       if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
 
       const sessUser = { username: user.username, fullname: user.fullname};
       req.session.sessUser = sessUser; // Auto saves session data
-      res.json({ msg: " Logged In Successfully", sessUser }); // sends cookie with sessionID automatically in response
+      res.json({ msg: " Logged In Successfully", sessUser });// sends cookie with sessionID automatically in response
+      console.log("Logged in successfully", req.sessionID);
     });
   });
 });
 
-employeeRoutes.route("/employee/logout").post(function (req, res){
+//logout user and deletes the cookie
+employeeRoutes.route("/employee/logout").delete(async function (req, res){
   req.session.destroy((err) => {
     //delete session data from store, using sessionID in cookie
     if (err) throw err;
@@ -125,7 +126,8 @@ employeeRoutes.route("/employee/logout").post(function (req, res){
   });
 });
 
-employeeRoutes.route("/employee/authchecker").post(function (req, res) {
+//auth user
+employeeRoutes.route("/auth").get(async function (req, res) {
   const sessUser = req.session.user;
   if (sessUser) {
     return res.json({ msg: " Authenticated Successfully", sessUser });
