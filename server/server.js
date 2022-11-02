@@ -30,8 +30,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-
-
 //Express-Session
 const MAX_AGE = 1000 * 60 * 60 * 1; // 1000ms*60second*60min*1hr=1hr
 app.use(session({
@@ -46,20 +44,25 @@ app.use(session({
   }
 }));
 
-/*app.use((req,res,next)=>{
-  console.log(req.session);
+// Check session
+/*app.use((req, res, next) => {
+  if (!req.session.user) {
+      res.clearCookie(session);
+  }
   next();
-})*/
+});*/
+
 
 //routes
 app.use(require("./routes/record"));
 app.use(require("./routes/employee"));
+app.use(require("./routes/test"));
+app.use(express.static('src'));
 
 app.listen(port, () => {
   // perform a database connection when server starts
   dbo.connectToServer(function (err) {
     if (err) console.error(err);
- 
   });
   console.log(`Server is running on port: ${port}`);
 });

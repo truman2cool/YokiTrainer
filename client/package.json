@@ -1,5 +1,5 @@
 {
-  "proxy":"http://localhost:5000",
+  "proxy": "http://localhost:5000",
   "name": "client",
   "version": "0.1.0",
   "private": true,
@@ -19,6 +19,7 @@
     "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
+    "redux-react-session": "^2.6.1",
     "redux-thunk": "^2.4.1",
     "stream": "^0.0.2",
     "web-vitals": "^2.1.4"

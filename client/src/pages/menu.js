@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
- 
+import Navbar from "../components/navbar"; 
+
 const Record = (props) => (
  <tr>
    <td>{props.record.name}</td>
@@ -67,7 +68,7 @@ export default function RecordList() {
  
  // This following section will display the table with the records of individuals.
  return (
-   <div>
+   <div><Navbar/>
      <h3>Menu List</h3>
      <table className="table table-striped" style={{ marginTop: 20 }}>
        <thead>

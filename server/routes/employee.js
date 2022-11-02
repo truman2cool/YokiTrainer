@@ -97,6 +97,7 @@ employeeRoutes.route("/signup").post(async function (req, res) {
 //login user
 employeeRoutes.route("/login").post(async function (req, res) {
   const { username, password } = req.body;
+
   // basic validation
   if (!username || !password ) {
     return res.status(400).json({ msg: "Please enter all fields" });
@@ -110,18 +111,21 @@ employeeRoutes.route("/login").post(async function (req, res) {
 
       const sessUser = { username: user.username, fullname: user.fullname};
       req.session.sessUser = sessUser; // Auto saves session data
-      res.json({ msg: " Logged In Successfully", sessUser });// sends cookie with sessionID automatically in response
+      req.session.authorized = true;
+      //res.set("Set-Cookie",`session=${req.sessionID}`);
+      // sends cookie with sessionID automatically in response
+      res.json({ msg: " Logged In Successfully", sessUser });
       console.log("Logged in successfully", req.sessionID);
     });
   });
 });
 
 //logout user and deletes the cookie
-employeeRoutes.route("/employee/logout").delete(async function (req, res){
+employeeRoutes.route("/logout").delete(async function (req, res){
   req.session.destroy((err) => {
     //delete session data from store, using sessionID in cookie
     if (err) throw err;
-    res.clearCookie("session-id"); // clears cookie containing expired sessionID
+    res.clearCookie("YokiCookie"); // clears cookie containing expired sessionID
     res.send("Logged out successfully");
   });
 });
@@ -129,7 +133,7 @@ employeeRoutes.route("/employee/logout").delete(async function (req, res){
 //auth user
 employeeRoutes.route("/auth").get(async function (req, res) {
   const sessUser = req.session.user;
-  if (sessUser) {
+    if (sessUser) {
     return res.json({ msg: " Authenticated Successfully", sessUser });
   } else {
     return res.status(401).json({ msg: "Unauthorized" });

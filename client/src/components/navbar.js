@@ -61,6 +61,15 @@ return (
           </li>
           <li className='nav-item'>
             <Link
+              to='/Test'
+              className='nav-links'
+              onClick={closeMobileMenu}
+            >
+              Test
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link
               to='/create'
               className='nav-links'
               onClick={closeMobileMenu}

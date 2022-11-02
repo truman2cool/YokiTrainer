@@ -1,15 +1,12 @@
-import React, { Component } from "react";
-import { Navigate, Redirect, Route } from "react-router-dom";
-import loggedIn from "../pages/login";
+import { Outlet, Navigate } from "react-router-dom";
 
-const PrivateRoute =({component: Component, restricted, ...rest})=>{
-  return(
-    <Route {...rest} render={props=>(
-      loggedIn?
-       <Component {...props} />
-       :<Navigate to="/dashboard"/>
-    )}/>
-  );
-};
+const PrivateRoute = ()=>{
+    let auth = {"token": false}
+    return(
+
+        auth.token? <Outlet/>:<Navigate to="/login"/>
+
+    )
+}
 
 export default PrivateRoute;

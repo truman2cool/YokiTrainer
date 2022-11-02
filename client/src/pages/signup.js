@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import Navbar from "../components/navbar";
 //import {useSignup} from "../hooks/useSignup";
 import "../css/form.css";
 
@@ -50,7 +51,7 @@ navigate("/login");
 
 //display form
 return (
-  <div>
+  <div><Navbar />
       <h3>Sign up</h3>
         <form className="signup" onSubmit={onSubmit}>
         <label>Username:</label>
