@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import Navbar from "./navbar";
  
-export default function Create() {
+export default function CreateTest() {
  const [testForm, setTestForm] = useState({
     question: "",
     keyA:"",
@@ -69,7 +69,7 @@ export default function Create() {
          />
        </div>
        <div className="form-group">
-         <label htmlFor="answerA">Answer A test: </label>
+         <label htmlFor="Answer A">Answer A test: </label>
          <input
            type="text"
            className="form-control"
@@ -80,7 +80,7 @@ export default function Create() {
          />
        </div>
        <div className="form-group">
-         <label htmlFor="answerA">Answer B test: </label>
+         <label htmlFor="Answer B">Answer B test: </label>
          <input
            type="text"
            className="form-control"
@@ -91,7 +91,7 @@ export default function Create() {
          />
        </div>
        <div className="form-group">
-         <label htmlFor="answerA">Answer C test: </label>
+         <label htmlFor="name">Answer C test: </label>
          <input
            type="text"
            className="form-control"
@@ -101,7 +101,7 @@ export default function Create() {
          />
        </div>
        <div className="form-group">
-         <label htmlFor="answerA">Answer D test: </label>
+         <label htmlFor="name">Answer D test: </label>
          <input
            type="text"
            className="form-control"

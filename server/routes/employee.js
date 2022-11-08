@@ -3,11 +3,11 @@ const bcrypt = require("bcrypt");
 const validation = require("validator");
 //use to define our routes and as a middleware to take care of communication
 const employeeRoutes = express.Router();
-
+const jwt = require("jsonwebtoken");
 //connect to database
 const dbo = require("../db/conn");
 const User = require("../models/userModel");
-
+const checkauth = require("../middleware/checkauth");
 
 //help convert the id from string to ObjectId
 const ObjectId = require("mongodb").ObjectId;
@@ -25,7 +25,7 @@ employeeRoutes.route("/employee").get(function (req, res){
 });
 
 // This section will help you get a single record by id
-employeeRoutes.route("/employee/:id").get(function (req, res) {
+/*employeeRoutes.route("/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
   db_connect
@@ -34,23 +34,7 @@ employeeRoutes.route("/employee/:id").get(function (req, res) {
       if (err) throw err;
       res.json(result);
     });
- });
-
-// This section will help you create a new record.
-/*employeeRoutes.route("/employee/add").post(function (req, response) {
-    let db_connect = dbo.getDb();
-    let myobj = {
-        username: req.body.username,
-        email: req.body.email,
-        fullname: req.body.fullname,
-        password: req.body.password,
-    }
-    db_connect.collection("Users").insertOne(myobj, function (err, res) {
-      if (err) throw err;
-      response.json(res);
-    });
-   });*/
-
+ });*/
 
 // This section will help you create a new user.
 employeeRoutes.route("/signup").post(async function (req, res) {
@@ -109,13 +93,28 @@ employeeRoutes.route("/login").post(async function (req, res) {
     bcrypt.compare(password, user.password).then((isMatch) => {
       if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
 
-      const sessUser = { username: user.username, fullname: user.fullname};
-      req.session.sessUser = sessUser; // Auto saves session data
-      req.session.authorized = true;
+      //const sessUser = { username: user.username, fullname: user.fullname};
+      //req.session.sessUser = sessUser; // Auto saves session data
+      //req.session.authorized = true;
       //res.set("Set-Cookie",`session=${req.sessionID}`);
+      const payload ={
+        id: user._id,
+        username: user.username
+      }
+      jwt.sign(
+        payload, 
+        process.env.APP_SECRET, {expiresIn: 2155926},
+        (err,token)=>{
+          res.json({
+            user,
+            token:"Bearer token: " + token,
+            success: true
+          })
+        }
+      )
       // sends cookie with sessionID automatically in response
-      res.json({ msg: " Logged In Successfully", sessUser });
-      console.log("Logged in successfully", req.sessionID);
+      //res.json({ msg: " Logged In Successfully", sessUser });
+      //console.log("Logged in successfully", req.sessionID);
     });
   });
 });
@@ -172,5 +171,13 @@ employeeRoutes.route("/auth").get(async function (req, res) {
     });
    });
 
+
+   employeeRoutes.get("/:id", checkauth, (req, res)=>{
+    User.findOne({_id: req.params.id}).then(user=>{
+      res.json({user, success: true})
+    }).catch(er=>{
+      res.json({success: false, message: er.message})
+    })
+  })
 
    module.exports = employeeRoutes;

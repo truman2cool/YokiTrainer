@@ -18,11 +18,11 @@ mongoose.connect(Db,{
 
 module.exports = {
   connectToServer: function (callback) {
-    client.connect(function (err, db) {
+    client.connect(function (err, Db) {
       // Verify we got a good "db" object
-      if (db)
+      if (Db)
       {
-        _db = db.db("Yoki");
+        _db = Db.db("Yoki");
         console.log("Successfully connected to MongoDB."); 
       }
       return callback(err);
