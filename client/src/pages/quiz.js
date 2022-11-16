@@ -1,9 +1,9 @@
 import React from 'react';
-import Sidebar from '../Sidebar/Sidebar';
+//import Sidebar from '../Sidebar/Sidebar';
 import './CreateQuiz.css';
-import Dialog from '../Dialog/Dialog';
+import Dialog from './Dialog';
 import axios from 'axios';
-import Toast from '../Toast/Toast';
+import Toast from './Toast';
 
 export default class CreateQuiz extends React.Component {
 

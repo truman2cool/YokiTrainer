@@ -13,6 +13,7 @@ import Signup from "./pages/signup";
 import Menu from "./pages/menu";
 import Logout from "./pages/logout";
 import Test from "./pages/Test";
+import Quiz from "./pages/quiz";
 import CreateTest from "./components/createTest";
 
 function App (){
@@ -28,6 +29,7 @@ function App (){
      <Route path="/edit/:id" element={<Edit />} />
      <Route path="/Test" element={<Test />} />
      <Route path="/menu" element={<Menu />} />
+     <Route path="/quiz" element={<Quiz />} />
      <Route path="/createTest"  element={<CreateTest />} /> 
      <Route path="/create"  element={<Create />} /> 
    </Routes>
