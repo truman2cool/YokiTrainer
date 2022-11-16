@@ -70,6 +70,9 @@ export default function RecordList() {
  return (
    <div><Navbar/>
      <h3>Menu List</h3>
+     <button className='nav-item'>
+        <Link to='/create'>Create Item</Link>
+      </button>
      <table className="table table-striped" style={{ marginTop: 20 }}>
        <thead>
          <tr>

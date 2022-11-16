@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
- 
+import React, { useState } from "react";
+
 // We import bootstrap to make our application look better.
 import "../css/navbar.css";
 //import "bootstrap/dist/css/bootstrap.css";
@@ -7,17 +7,17 @@ import "../css/navbar.css";
  
 // We import NavLink to utilize the react router.
 import { Link } from "react-router-dom";
-import {Button } from "./button";
+//import {Button } from "./button";
 
 // Here, we display our Navbar
 export default function Navbar() {
   const [click, setClick] =useState(false);
-  const [button, setButton] =useState(true);
+  //const [button, setButton] =useState(true);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  const showButton = () =>{
+  /*const showButton = () =>{
     if (window.innerWidth<=960){
       setButton(false);
     }else{
@@ -27,15 +27,13 @@ export default function Navbar() {
 
   useEffect(()=>{
     showButton();
-  },[]);
-
-window.addEventListener('resize', showButton);
+  },[]);*/
 
 return (
   <>
     <nav className='navbar'>
       <div className='navbar-container'>
-        <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+        <Link to="/" className='navbar-logo' onClick={closeMobileMenu}>
        <img style={{"width" : 25 + '%'}} 
         src="/yokio.jpg"
         alt="Yoki Logo">    
@@ -46,7 +44,7 @@ return (
         </div>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
           <li className='nav-item'>
-            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+            <Link to='/Dashboard' className='nav-links' onClick={closeMobileMenu}>
               Home
             </Link>
           </li>
@@ -70,15 +68,14 @@ return (
           </li>
           <li className='nav-item'>
             <Link
-              to='/create'
+              to='/CreateQuiz'
               className='nav-links'
               onClick={closeMobileMenu}
             >
-              Create
+              Quiz
             </Link>
           </li>
         </ul>
-        {button && <Button buttonStyle='btn2--outline'>Login</Button>}
       </div>
     </nav>
   </>

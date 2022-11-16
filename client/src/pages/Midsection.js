@@ -3,9 +3,11 @@ import '../css/App.css';
 import { Button, Button2 } from '../components/button';
 import '../css/Midsection.css';
 
+
 function Midsection() {
   return (
     <div className='hero-container'>
+      
       <video src='/videos/video-1.mp4' autoPlay loop muted />
       <h1>Yoki Staff</h1>
       <p>What are you waiting for? Get to work!</p>

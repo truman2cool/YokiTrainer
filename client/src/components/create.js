@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import Navbar from "./navbar";
- 
+
 export default function Create() {
  const [form, setForm] = useState({
    name: "",
@@ -39,7 +39,7 @@ export default function Create() {
    setForm({ name: "", description: "", category: "" });
    navigate("../menu");
  }
- 
+
  // This following section will display the form that takes the input from the user.
  return (
    <div><Navbar/>

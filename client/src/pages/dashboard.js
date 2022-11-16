@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import '../css/Midsection.css';
-import Navbar from "../components/navbar";
 import React from 'react';
 
 
@@ -8,13 +7,15 @@ function Dashboard(){
 
 return(
   <div>
-<Navbar />
 <div className='hero2-container'>
-<h1>This is the dashboard of The Website</h1>
+<video  style={{"width" : 25 + '%', "height": 1000}} autoPlay loop muted>
+  <source src='/videos/homepage.mp4'  >
+  </source></video>
+<h1>Home Page</h1>
       <p>
-        <Link to="/signup">Signup</Link>
+        <Link to="/Test">Test</Link>
       </p>
-      <p className='nav-item'>
+      <p>
         <Link to='/menu'>Menu</Link>
       </p>
       <p>

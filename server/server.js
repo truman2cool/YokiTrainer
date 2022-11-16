@@ -54,6 +54,7 @@ app.use(require("./routes/employee"));
 app.use(require("./routes/test"));
 app.use(express.static('src'));
 app.use(require("./routes/users"));
+app.use(require("./routes/quizzes"));
 
 app.listen(port, () => {
   // perform a database connection when server starts

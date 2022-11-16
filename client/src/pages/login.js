@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "../css/form.css";
 
+
 export default function Login() {
   //const location = useLocation();
 
@@ -27,6 +28,7 @@ function updateUser(value) {
       /*When a post request is sent to the login url, 
         we'll add a user to the database.*/
       const newUser = { ...user };
+      
     /*await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
