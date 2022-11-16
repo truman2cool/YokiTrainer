@@ -53,7 +53,7 @@ employeeRoutes.route("/signup").post(async function (req, res) {
       return res.status(400).json({ msg: "Password should be atleast 6 characters long" });
     }
     //checks username
-    User.findOne({ username: username } || {email: email}).then((user) => {
+    User.findOne( {$or:[{username}, {email}]}).then((user) => {
       if (user) return res.status(400).json({ msg: "Username or Email is already exists" });
       
     //New User created
@@ -87,7 +87,7 @@ employeeRoutes.route("/login").post(async function (req, res) {
     return res.status(400).json({ msg: "Please enter all fields" });
   }
   //check for existing user
-  User.findOne({ username }).then((user) => {
+  User.findOne({username}).then((user) => {
     if (!user) return res.status(400).json({ msg: "Invalid crendentials" });
     // Validate password
     bcrypt.compare(password, user.password).then((isMatch) => {
@@ -113,7 +113,7 @@ employeeRoutes.route("/login").post(async function (req, res) {
         }
       )
       // sends cookie with sessionID automatically in response
-      //res.json({ msg: " Logged In Successfully", sessUser });
+      res.json({ msg: "Logged In Successfully", username });
       //console.log("Logged in successfully", req.sessionID);
     });
   });

@@ -1,10 +1,9 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-//import useAuth from "../hooks/useAuth";
 import Navbar from "../components/navbar";
-import axios from "axios";
-//const LOGIN_URL = '/auth';
+import "../css/form.css";
 
 export default function Login() {
   //const location = useLocation();
@@ -13,7 +12,6 @@ export default function Login() {
     username: "",
     password:"",
   })
-  axios.defaults.withCredentials = true
 const navigate = useNavigate();
 
 // These methods will update the state properties.
@@ -29,7 +27,7 @@ function updateUser(value) {
       /*When a post request is sent to the login url, 
         we'll add a user to the database.*/
       const newUser = { ...user };
-    await fetch("http://localhost:5000/login", {
+    /*await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
        "Content-Type": "application/json",
@@ -39,15 +37,24 @@ function updateUser(value) {
     }).then((response)=> response.json())
         .then((user)=>{
         console.log(user);
-        
     })
         .catch(error => {
         window.alert(error);
         return;
+    });*/
+
+    await axios.post("/login",newUser,{
+      headers:{"Content-Type": "application/json"},
+    }).then((user)=>{
+      console.log(user);
+    }).catch(error => {
+      window.alert(error);
+      return;
     });
   setUser({ username: "", password: ""});
   navigate("/Dashboard")
  }
+ 
  //display form
   return (
     <div><Navbar/>

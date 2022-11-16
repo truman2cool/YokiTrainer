@@ -11,11 +11,9 @@ import Create from "./components/create";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Menu from "./pages/menu";
-import About from "./pages/about";
 import Logout from "./pages/logout";
 import Test from "./pages/Test";
 import CreateTest from "./components/createTest";
-
 
 function App (){
 
@@ -32,9 +30,9 @@ function App (){
      <Route path="/menu" element={<Menu />} />
      <Route path="/createTest"  element={<CreateTest />} /> 
      <Route path="/create"  element={<Create />} /> 
-     <Route path="/about" element={<About />} />
    </Routes>
      </div>
-   )};
+   )
+  };
 
 export default App;

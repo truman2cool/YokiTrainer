@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import Navbar from "../components/navbar";
-//import {useSignup} from "../hooks/useSignup";
 import "../css/form.css";
+import axios from 'axios';
 
 export default function Signup() {
   const [user, setUser] = useState({
@@ -30,7 +30,7 @@ async function onSubmit(e){
 // When a post request is sent to the create url, we'll add a new record to the database.
 const newUser = { ...user };
 
- await fetch("/signup", {
+ /*await fetch("/signup", {
  method: "POST",
  headers: {
    "Content-Type": "application/json",
@@ -43,6 +43,15 @@ const newUser = { ...user };
 .catch(error => {
  window.alert(error);
  return;
+});*/
+
+await axios.post("/signup",newUser,{
+  headers:{"Content-Type": "application/json"},
+}).then((user)=>{
+  console.log(user);
+}).catch(error => {
+  window.alert(error);
+  return;
 });
 
 setUser({username:"", email: "", fullname:"", password:""});
