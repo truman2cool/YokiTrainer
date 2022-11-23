@@ -45,7 +45,7 @@ return (
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
           <li className='nav-item'>
             <Link to='/Dashboard' className='nav-links' onClick={closeMobileMenu}>
-              Home
+              Dashboard
             </Link>
           </li>
           <li className='nav-item'>

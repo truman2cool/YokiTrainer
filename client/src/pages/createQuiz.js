@@ -11,7 +11,7 @@ export default class CreateQuiz extends React.Component {
    constructor(props) {
        super(props);
        this.state = {
-           categories: ['Sushi', 'Martinis', 'Tapas', 'Entrées', 'Cocktails', 'Misc'],
+           categories: ['Sushi', 'Martini', 'Tapas', 'Entrées', 'Cocktails', 'Misc'],
            categoryVal: 'Sushi',
            mustBeSignedIn: false,
            questions: [],
@@ -25,11 +25,11 @@ export default class CreateQuiz extends React.Component {
        }
    }
 
-   /*componentDidMount() {
-        if (!localStorage.getItem('JWT_PAYLOAD')) {
-            this.props.history.push('/');
+   componentDidMount() {
+        if (!localStorage.getItem('jwt')) {
+            this.props.history.push('/login');
         }
-    }*/
+    }
 
    selectPrivate = e => {
        if(e.target.checked === true) {
@@ -84,7 +84,7 @@ export default class CreateQuiz extends React.Component {
            category: this.state.categoryVal,
            imgUrl: this.state.imgUrl
        }
-       axios.post('/createQuiz', {quiz, createdBy: localStorage.getItem('_ID')}).then(res => {
+       axios.post('/createQuiz', {quiz, createdBy: localStorage.getItem('id')}).then(res => {
             if (res.data.success) {
                 this.setState({
                     questions: [], 

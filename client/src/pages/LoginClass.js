@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class LoginClass extends React.Component {
+export default class Login extends React.Component {
 
     constructor(props) {
         super(props);
@@ -10,6 +10,19 @@ export default class LoginClass extends React.Component {
         }
     }
 
+    logUser = () =>{
+        console.log(this.state.username);
+        console.log(this.state.password);
+    }
+
+    handleUsernameInput = e =>{
+        this.setState({username : e.target.value});
+    }
+
+    handlePasswordInput = e =>{
+        this.setState({password : e.target.value});
+    }
+
     render() {
         return ( 
             <div className="sign-in-wrapper">
@@ -17,19 +30,19 @@ export default class LoginClass extends React.Component {
                     <div className="input-wrapper">
                         <div>Username</div> 
                         <input className="input" 
-                        type="username" 
+                        type="text" 
                         placeholder="Username" 
                         value={this.state.username} 
-                        onChange={ e => this.setState({ username: e.target.value }) } />
+                        onChange={this.handleUsernameInput} />
                     </div>
                     <div className="input-wrapper">
                       <div>Password</div> 
                       <input className="input" 
                       type="password" placeholder="Password" 
                       value={this.state.password} 
-                      onChange={e => this.setState({ password: e.target.value })} />
+                      onChange={this.handlePasswordInput} />
                     </div>
-                    <div className="btn" onClick={() => this.props.logIn({...this.state})}>Sign In</div> 
+                    <div className="btn" onClick={()=> this.props.logIn(this.state.username, this.state.password)}>Sign In</div> 
                 </div> 
             </div>
         )

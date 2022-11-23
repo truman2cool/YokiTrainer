@@ -54,11 +54,11 @@
 }
 
 .create-quiz-wrapper .btn-wrapper .btn {
-   color: white;
+   color: rgb(0, 0, 0);
    border-radius: 10px !important;
 }
 .create-quiz-wrapper .btn-wrapper .btn:first-child {
-   background-color: red;
+   background-color: grey;
 }
 .create-quiz-wrapper .question {
    display: flex;

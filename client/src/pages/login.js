@@ -8,7 +8,6 @@ import "../css/form.css";
 
 export default function Login() {
   //const location = useLocation();
-
   const [user, setUser] = useState({
     username: "",
     password:"",
@@ -24,39 +23,22 @@ function updateUser(value) {
 
   async function onSubmit(e){
       e.preventDefault()
-      
       /*When a post request is sent to the login url, 
         we'll add a user to the database.*/
       const newUser = { ...user };
-      
-    /*await fetch("http://localhost:5000/login", {
-        method: "POST",
-        headers: {
-       "Content-Type": "application/json",
-      },
-        credentials: 'include',
-        body: JSON.stringify(newUser),
-    }).then((response)=> response.json())
-        .then((user)=>{
-        console.log(user);
-    })
-        .catch(error => {
-        window.alert(error);
-        return;
-    });*/
-
-    await axios.post("/login",newUser,{
+  await axios.post("/login",newUser,{
       headers:{"Content-Type": "application/json"},
-    }).then((user)=>{
-      console.log(user);
+    }).then((res)=>{
+      console.log(res);
+      localStorage.setItem("jwt", res.data.token)
+      localStorage.setItem("id", res.data.user._id,)
     }).catch(error => {
       window.alert(error);
       return;
     });
-  setUser({ username: "", password: ""});
-  navigate("/Dashboard")
- }
- 
+  setUser({ username: "", password: ""});  
+  navigate("/dashboard")
+}
  //display form
   return (
     <div><Navbar/>

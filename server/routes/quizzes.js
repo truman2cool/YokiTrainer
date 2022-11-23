@@ -6,7 +6,7 @@ const scoreModel = require('../models/scoreModel');
 
 const quizzes = express.Router();
 
-quizzes.route("/createQuiz").post( checkAuth, (req, res) => {
+quizzes.post("/createQuiz", (req, res) => {
     let quiz = new quizModel({
         ...req.body.quiz,
         createdBy: req.body.createdBy,
@@ -27,7 +27,7 @@ quizzes.route("/createQuiz").post( checkAuth, (req, res) => {
     })
 });
 
-quizzes.route("/my-quizzes/:id").get( checkAuth, (req, res) => {
+quizzes.get("/my-quizzes/:id", checkAuth, (req, res) => {
 
     quizModel.find({ createdBy: req.params.id })
         .then(result => {
@@ -35,14 +35,14 @@ quizzes.route("/my-quizzes/:id").get( checkAuth, (req, res) => {
         })
 });
 
-quizzes.route("/all-quizzes").get( checkAuth, (req, res) => {
+quizzes.get("/all-quizzes",checkAuth, (req, res) => {
     quizModel.find()
         .then(result => {
             res.status(200).json(result);
         })
 })
 
-quizzes.route("/get-quiz/:id").get(checkAuth, (req, res) => {
+quizzes.get("/get-quiz/:id", checkAuth, (req, res) => {
     quizModel.findOne({ _id: req.params.id }).then(quiz => {
         res.status(200).json({quiz});
     }).catch(er => {
@@ -51,7 +51,7 @@ quizzes.route("/get-quiz/:id").get(checkAuth, (req, res) => {
 })
 
 
-quizzes.route("/save-results").post(checkAuth, (req, res) => {
+quizzes.post("/save-results", checkAuth, (req, res) => {
     let score = new scoreModel({
         userId: req.body.currentUser,
         answers: req.body.answers,
@@ -67,7 +67,7 @@ quizzes.route("/save-results").post(checkAuth, (req, res) => {
     })
 });
 
-quizzes.route("/results/:id").get( checkAuth, (req, res) => {
+quizzes.get("/results/:id", checkAuth, (req, res) => {
     if (!req.params.id) {
         res.status(500).send("No id provided in params");
     } else {

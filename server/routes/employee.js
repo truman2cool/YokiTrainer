@@ -8,20 +8,30 @@ const jwt = require("jsonwebtoken");
 const dbo = require("../db/conn");
 const User = require("../models/userModel");
 const checkauth = require("../middleware/checkauth");
-
 //help convert the id from string to ObjectId
 const ObjectId = require("mongodb").ObjectId;
 
 //get list of records
-employeeRoutes.route("/employee").get(function (req, res){
+/*employeeRoutes.route("/employee").get(function (req, res){
     let db_connect = dbo.getDb("Yoki");
     db_connect
-    .collection("Users")
+    .collection("users")
     .find({})
     .toArray(function (err, result){
         if (err) throw err;
         res.json(result);
     });
+});*/
+
+employeeRoutes.get("/employee", checkauth, (req, res)=>{
+  let db_connect = dbo.getDb("Yoki");
+  db_connect
+  .collection("users")
+  .find({})
+  .toArray(function (err, result){
+      if (err) throw err;
+      res.json(result);
+  });
 });
 
 // This section will help you get a single record by id
@@ -106,6 +116,7 @@ employeeRoutes.route("/login").post(async function (req, res) {
         process.env.APP_SECRET, {expiresIn: 2155926},
         (err,token)=>{
           res.json({
+            msg: "Logged In Successfully",
             user,
             token:"Bearer token: " + token,
             success: true
@@ -113,11 +124,46 @@ employeeRoutes.route("/login").post(async function (req, res) {
         }
       )
       // sends cookie with sessionID automatically in response
-      res.json({ msg: "Logged In Successfully", username });
+      //res.json({ msg: "Logged In Successfully", username });
       //console.log("Logged in successfully", req.sessionID);
     });
   });
 });
+
+/*employeeRoutes.route("/login").post(async function (req, res) {
+  const { errors, isValid } = loginValidator(req.body);
+  if (!isValid) {
+      res.json({ success: false, errors });
+  } else {
+      Users.findOne({ email: req.body.email }).then(user => {
+          if (!user) {
+              res.json({ message: 'Email does not exist', success: false });
+          } else {
+              bcrypt.compare(req.body.password, user.password).then(success => {
+                  if (!success) {
+                      res.json({ message: 'Invalid password', success: false });
+                  } else {
+                      const payload = {
+                          id: user._id,
+                          name: user.firstName
+                      }
+                      jwt.sign(
+                          payload,
+                          process.env.APP_SECRET, { expiresIn: 2155926 },
+                          (err, token) => {
+                              res.json({
+                                  user,
+                                  token: 'Bearer token: ' + token,
+                                  success: true
+                              })
+                          }
+                      )
+                  }
+              })
+          }
+      })
+  }
+})*/
 
 //logout user and deletes the cookie
 employeeRoutes.route("/logout").delete(async function (req, res){
