@@ -1,8 +1,8 @@
 import React from 'react';
-//import './TakeQuiz.css';
+import '../css/TakeQuiz.css';
 
 import $ from 'jquery';
-//import ProgressBar from '../ProgressBar/ProgressBar';
+import ProgressBar from './ProgressBar';
 import axios from 'axios';
 
 export default class TakeQuiz extends React.Component {
@@ -11,7 +11,7 @@ export default class TakeQuiz extends React.Component {
         super(props);
         this.state = {
             quiz: {},
-            authorized: false,
+            authorized: true,
             answers: [],
             activeQuestionIdx: 0,
             percentage: 0
@@ -20,9 +20,9 @@ export default class TakeQuiz extends React.Component {
 
     componentDidMount() {
         $('#modal-wrapper-quiz').hide();
-        if (this.props.location.state != undefined) {
+        if (this.props.state !== undefined) {
             this.setState({authorized: true});
-            this.setState({quiz: this.props.location.state.quiz, answers: Array(this.props.location.state.quiz.questions.length).fill(0)});
+            this.setState({quiz: this.props.state.quiz, answers: Array(this.props.state.quiz.questions.length).fill(0)});
         }
     }
 
@@ -75,7 +75,7 @@ export default class TakeQuiz extends React.Component {
     }
 
     finishQuiz = () => {
-        axios.post("/api/quizzes/save-results", {
+        axios.post("/save-results", {
             currentUser: localStorage.getItem('_ID'),
             answers: this.state.answers,
             quizId: this.state.quiz._id
@@ -107,12 +107,19 @@ export default class TakeQuiz extends React.Component {
                                     <div className="left">
                                         {this.state.quiz.quizName}
                                     </div>
-
+                                    <ProgressBar
+                                        className="center"
+                                        progress={Number((this.state.percentage * 100).toFixed(0))}
+                                        size={160}
+                                        strokeWidth={15}
+                                        circleOneStroke='#dadfea'
+                                        circleTwoStroke={'#00aaf1'}
+                                    />
                                 </div>
 
                                 <div className="body">
                                     <div className="left">
-                                        <div className="question-name">{quiz.questions[activeQuestionIdx].questionName}</div>
+                                    <div className="question-name">{quiz.questions[activeQuestionIdx].questionName}</div>
                                         <div className="question-bubble-wrapper">
                                             {this.state.quiz.questions.map((ans, idx) => (
                                                 <span onClick={() => this.setState({ activeQuestionIdx: idx })} key={idx} className={this.state.activeQuestionIdx === idx ? 'question-bubble selected-bubble' : this.state.answers[idx] === 0 ? "question-bubble" : 'question-bubble bubble-correct'}>

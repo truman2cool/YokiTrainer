@@ -93,7 +93,7 @@ navbar {
     }
   
     .nav-menu.active {
-      background: #222224;
+      background: #b2b2b2;
       left: 0;
       opacity: 1;
       transition: all 0.5s ease;

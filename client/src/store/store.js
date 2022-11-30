@@ -6,8 +6,8 @@ const initState = {
 
 const reducer = (state = initState, action) => {
     if (action.type === 'login') {
-        localStorage.setItem('jwt', action.token);
-        localStorage.setItem('id', action._id);
+        localStorage.setItem('JWT_PAYLOAD', action.token);
+        localStorage.setItem('_ID', action._id);
 
         return {
             ...state, 

@@ -13,7 +13,7 @@ return(
   </source></video>
 <h1>Home Page</h1>
       <p>
-        <Link to="/Test">Test</Link>
+        <Link to="/createQuiz">Create Quiz</Link>
       </p>
       <p>
         <Link to='/menu'>Menu</Link>

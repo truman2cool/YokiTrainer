@@ -59,11 +59,20 @@ return (
           </li>
           <li className='nav-item'>
             <Link
-              to='/Test'
+              to='/ViewQuiz'
               className='nav-links'
               onClick={closeMobileMenu}
             >
-              Test
+              View Quiz
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link
+              to='/TakeQuiz'
+              className='nav-links'
+              onClick={closeMobileMenu}
+            >
+              Take Quiz
             </Link>
           </li>
           <li className='nav-item'>
@@ -72,7 +81,7 @@ return (
               className='nav-links'
               onClick={closeMobileMenu}
             >
-              Quiz
+              Create Quiz
             </Link>
           </li>
         </ul>

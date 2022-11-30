@@ -26,7 +26,7 @@ export default class CreateQuiz extends React.Component {
    }
 
    componentDidMount() {
-        if (!localStorage.getItem('jwt')) {
+        if (!localStorage.getItem('JWT_PAYLOAD')) {
             this.props.history.push('/login');
         }
     }

@@ -20,8 +20,10 @@ import CreateTest from "./components/createTest";
 import Auth from "./pages/Auth";
 import axios from "axios";
 import store from "./store/store";
+import ProgressBar from "./pages/ProgressBar";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import TakeQuiz from "./pages/TakeQuiz";
+import ViewQuiz from "./pages/ViewQuiz";
 
 /*function App(){
 
@@ -45,9 +47,9 @@ import TakeQuiz from "./pages/TakeQuiz";
 };*/
 class App extends React.Component {
 
-  /*componentDidMount() {
+  componentDidMount() {
     if (localStorage.getItem('_ID')) {
-      axios.get(`/api/users/${localStorage.getItem('_ID')}`).then(res => {
+      axios.get(`/${localStorage.getItem('_ID')}`).then(res => {
         store.dispatch({
           user: res.data.user,
           type: 'set_user'
@@ -56,7 +58,8 @@ class App extends React.Component {
         console.log(er);
       })
     }
-  }*/
+  }
+
   render(){
   return (
     <div className="App">
@@ -73,6 +76,8 @@ class App extends React.Component {
       <Route path="/Test" element={<Test />} />
       <Route path="/menu" element={<Menu />} />
       <Route path="/createQuiz" element={<CreateQuiz />} />
+      <Route path="/viewQuiz" element={<ViewQuiz />} />
+      <Route path="/ProgressBar" element={<ProgressBar/>}/>
       <Route path="/createTest"  element={<CreateTest />} /> 
       <Route path="/TakeQuiz"  element={<TakeQuiz />} /> 
       <Route path="/create"  element={<Create />} /> 
