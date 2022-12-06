@@ -84,7 +84,7 @@ export default class CreateQuiz extends React.Component {
            category: this.state.categoryVal,
            imgUrl: this.state.imgUrl
        }
-       axios.post('/createQuiz', {quiz, createdBy: localStorage.getItem('id')}).then(res => {
+       axios.post('/createQuiz', {quiz, createdBy: localStorage.getItem('_ID')}).then(res => {
             if (res.data.success) {
                 this.setState({
                     questions: [], 

@@ -28,9 +28,9 @@ export default class ViewQuiz extends React.Component {
         this.setState({ id: id });
         this.refreshQuiz();
     }
-
+    //axios.get('/get-quiz/' + localStorage.getItem('_ID')).then(res => {
     refreshQuiz = () => {
-        axios.get('/get-quiz/' + localStorage.getItem('_ID')).then(res => {
+        axios.get('/get-quiz/6386a6a5d463e422b9a7a4e5').then(res => {
             if (res.data) {
                 this.setState({isLoading: false, quiz: res.data.quiz});
                 //this.checkAuth();

@@ -84,6 +84,15 @@ return (
               Create Quiz
             </Link>
           </li>
+          <li className='nav-item'>
+            <Link
+              to='/test'
+              className='nav-links'
+              onClick={closeMobileMenu}
+            >
+              Quiz demo
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>

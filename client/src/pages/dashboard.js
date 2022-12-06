@@ -5,6 +5,11 @@ import React from 'react';
 
 function Dashboard(){
 
+
+  async function onClick(e){
+      localStorage.removeItem("JWT_PAYLOAD")
+  }
+
 return(
   <div>
 <div className='hero2-container'>
@@ -16,10 +21,16 @@ return(
         <Link to="/createQuiz">Create Quiz</Link>
       </p>
       <p>
+        <Link to='/employee'>Edit Users</Link>
+      </p>
+      <p>
+        <Link to='/test'>Quiz Demo</Link>
+      </p>
+      <p>
         <Link to='/menu'>Menu</Link>
       </p>
       <p>
-      <Link to ="/">Logout</Link>
+      <Link to ="/" onClick={onClick}>Logout</Link>
       </p>
 </div>
 </div>

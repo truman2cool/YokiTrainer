@@ -23,7 +23,7 @@ const ObjectId = require("mongodb").ObjectId;
     });
 });*/
 
-employeeRoutes.get("/employee", checkauth, (req, res)=>{
+employeeRoutes.get("/employee", (req, res)=>{
   let db_connect = dbo.getDb("Yoki");
   db_connect
   .collection("users")
@@ -33,6 +33,14 @@ employeeRoutes.get("/employee", checkauth, (req, res)=>{
       res.json(result);
   });
 });
+
+employeeRoutes.get("/:id", (req, res)=>{
+  User.findOne({_id: req.params.id}).then(user=>{
+    res.json({user, success: true})
+  }).catch(er=>{
+    res.json({success: false, message: er.message})
+  })
+})
 
 // This section will help you get a single record by id
 /*employeeRoutes.route("/:id").get(function (req, res) {
@@ -186,44 +194,36 @@ employeeRoutes.route("/auth").get(async function (req, res) {
 });
 
    // This section will help you update a record by id.
-    employeeRoutes.route("/update/:id").post(function (req, response) {
+    employeeRoutes.route("/userUpdate/:id").post(function (req, response) {
     let db_connect = dbo.getDb();
-    let myquery = { _id: email };
+    let myquery = { _id: ObjectId(req.params.id) };
     let newvalues = {
       $set: {
         username: req.body.username,
         email: req.body.email,
-        fullname: req.body.username,
+        fullname: req.body.fullname,
         password: req.body.password,
       },
     };
     db_connect
-      .collection("Users")
+      .collection("users")
       .updateOne(myquery, newvalues, function (err, res) {
         if (err) throw err;
-        console.log("1 Employee document updated");
+        console.log(ObjectId(req.params.id)+" Employee updated");
         response.json(res);
       });
    });
     
    // This section will help you delete a record
-   employeeRoutes.route("/:id").delete((req, response) => {
+   employeeRoutes.route("/userDeletion/:id").delete((req, response) => {
     let db_connect = dbo.getDb();
     let myquery = { _id: ObjectId(req.params.id) };
-    db_connect.collection("Users").deleteOne(myquery, function (err, obj) {
+    db_connect.collection("users").deleteOne(myquery, function (err, obj) {
       if (err) throw err;
       console.log("1 Employee document deleted");
       response.json(obj);
     });
    });
 
-
-   employeeRoutes.get("/:id", checkauth, (req, res)=>{
-    User.findOne({_id: req.params.id}).then(user=>{
-      res.json({user, success: true})
-    }).catch(er=>{
-      res.json({success: false, message: er.message})
-    })
-  })
 
    module.exports = employeeRoutes;

@@ -7,8 +7,9 @@ import {Route, Routes} from "react-router-dom";
 import Home from "./pages/home";
 //import Homebar from "./components/homebar";
 import Dashboard from "./pages/Dashboard";
-//import Dashboard2 from "./pages/dashboard2";
+import Employee from "./context/employeeList";
 import Edit from "./components/edit";
+import UserEdit from "./components/userEdit";
 import Create from "./components/create";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
@@ -73,6 +74,8 @@ class App extends React.Component {
     <Route element={<PrivateRoutes/>}>
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/edit/:id" element={<Edit />} />
+      <Route path="/userEdit/:id" element={<UserEdit />} />
+      <Route path="/employee" element={<Employee/>}/>
       <Route path="/Test" element={<Test />} />
       <Route path="/menu" element={<Menu />} />
       <Route path="/createQuiz" element={<CreateQuiz />} />
