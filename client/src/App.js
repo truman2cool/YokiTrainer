@@ -5,7 +5,6 @@ import {Route, Routes} from "react-router-dom";
 
 // We import all the components we need in our app
 import Home from "./pages/home";
-//import Homebar from "./components/homebar";
 import Dashboard from "./pages/Dashboard";
 import Employee from "./context/employeeList";
 import Edit from "./components/edit";
@@ -18,7 +17,6 @@ import Logout from "./pages/logout";
 import Test from "./pages/Test";
 import CreateQuiz from "./pages/createQuiz";
 import CreateTest from "./components/createTest";
-//import Auth from "./pages/Auth";
 import axios from "axios";
 import store from "./store/store";
 import ProgressBar from "./pages/ProgressBar";

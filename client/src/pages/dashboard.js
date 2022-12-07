@@ -13,7 +13,7 @@ function Dashboard(){
 return(
   <div><Navbar/>
 <div className='hero2-container'>
-<video  style={{"width" : 25 + '%', "height": 850}} autoPlay loop muted>
+<video  style={{"width" : 40 + '%', "height": 850}} autoPlay loop muted>
   <source src='/videos/homepage.mp4'  >
   </source></video>
       <h1>Home Page</h1>
