@@ -3,14 +3,13 @@ import '../css/App.css';
 import { Button, Button2 } from '../components/button';
 import '../css/Midsection.css';
 
-
 function Midsection() {
   return (
     <div className='hero-container'>
       
-      <video src='/videos/video-1.mp4' autoPlay loop muted />
-      <h1>Yoki Staff</h1>
-      <p>What are you waiting for? Get to work!</p>
+      <video src='/videos/sushiboat.mp4' autoPlay loop muted />
+      <h1>Welcome</h1>
+      
       <div className='hero-btns'>
         <Button
           className='btns'

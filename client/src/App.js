@@ -18,7 +18,7 @@ import Logout from "./pages/logout";
 import Test from "./pages/Test";
 import CreateQuiz from "./pages/createQuiz";
 import CreateTest from "./components/createTest";
-import Auth from "./pages/Auth";
+//import Auth from "./pages/Auth";
 import axios from "axios";
 import store from "./store/store";
 import ProgressBar from "./pages/ProgressBar";
@@ -65,7 +65,7 @@ class App extends React.Component {
   return (
     <div className="App">
   <Routes> 
-    <Route path="/auth" element={<Auth/>}/>     
+  
     <Route path="/" element={<Home />} />
 
     <Route path="/login" element={<Login/>}/>

@@ -41,15 +41,23 @@ function updateUser(value) {
 }
  //display form
   return (
-    <div><Navbar/>
+    <div><Link to="/" className='navbar-logo' >
+    <img style={{"width" : 10+ '%'}} 
+     src="/yokio.jpg"
+     alt="Yoki Logo">    
+    </img>
+     </Link>
+    <div className="yokibar">
+        <img src="/images/YokiBar3.jpg" alt="Yoki Logo"></img>
+       </div>
         <h3><strong>Log in</strong></h3>
             <form className="login" onSubmit={onSubmit}>
             <label>Username:</label>
-            <div>
+            <div >
             <input
                 type = "text"
                 id="username"
-                placeholder="username"
+                placeholder="Enter your username"
                 name="username"
                 autoComplete="on"
                 onChange={(e) => updateUser({username: e.target.value})}
@@ -62,7 +70,7 @@ function updateUser(value) {
                 <input
                 type = "password"
                 id="password"
-                placeholder="Enter you Password"
+                placeholder="Enter your Password"
                 autoComplete="on"
                 ng-hide="true"
                 onChange={(e) => updateUser({password: e.target.value})}
@@ -82,7 +90,7 @@ function updateUser(value) {
         <div>            
             <label>Don't have an account?</label>
                 <Link to="/signup"> Sign up</Link>
-            </div>
+        </div>
         </div>
     )
 };

@@ -60,13 +60,21 @@ navigate("/login");
 
 //display form
 return (
-  <div><Navbar />
+  <div><Link to="/" className='navbar-logo' >
+  <img style={{"width" : 10+ '%'}} 
+   src="/yokio.jpg"
+   alt="Yoki Logo">    
+  </img>
+   </Link>
+   <div className="yokibar">
+        <img src="/images/YokiBar3.jpg" alt="Yoki Logo"></img>
+       </div>
       <h3>Sign up</h3>
         <form className="signup" onSubmit={onSubmit}>
         <label>Username:</label>
           <div>
           <input
-              type = "username"
+              type = "text"
               id="username"
               placeholder='Enter username'
               onChange={(e) => updateUser({username: e.target.value})}
@@ -77,7 +85,7 @@ return (
           <label>Email:</label>
           <div>
           <input
-              type = "email"
+              type = "text"
               id="email"
               placeholder='Enter an email'
               autoComplete="email"
@@ -89,7 +97,7 @@ return (
           <label>Full name:</label>
           <div>
           <input
-              type = "fullname"
+              type = "text"
               id="fullname"
               placeholder='Enter full name'
               onChange={(e) => updateUser({fullname: e.target.value})}

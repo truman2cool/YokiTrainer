@@ -14,7 +14,7 @@ video {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0);
   object-fit: contain;
 }
 .hero-container > h1 {
@@ -98,4 +98,13 @@ video {
   .btn {
     width: 100%;
   }
+}
+
+.yokidiner {
+  background-image: image("/images/yokidiner.jpg");
+  height: 100%;
+  width: 100;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

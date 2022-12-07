@@ -1,7 +1,16 @@
 input[type=text]{
     background-color: white;
-    width: 25%;
-    padding: 5px 10px 2px;
+    width: 15%;
+    padding: 5px 5px 2px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+input[type=password]{
+    background-color: white;
+    width: 15%;
+    padding: 5px 5px 2px;
     margin: 8px 0;
     box-sizing: border-box;
     border: 1px solid black;
@@ -61,7 +70,7 @@ button{
 
 .auth-wrapper .login-wrapper .input-wrapper {
     text-align: left;
-    /* width: fit-content; */
+
     margin: 20px auto;
 }
 
@@ -91,3 +100,11 @@ button{
     width: 60%;
     height: auto;
 }
+
+.yokibar {
+    background-image:image('/images/YokiBar2.jpg');
+    height: 50%;
+    width: 50%;
+    float: right; 
+    margin: -115px 400px 0px 0px;
+  }

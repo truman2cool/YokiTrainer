@@ -16,6 +16,9 @@ export default function Navbar() {
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+  async function Logout(e){
+    localStorage.removeItem("JWT_PAYLOAD")
+}
 
   /*const showButton = () =>{
     if (window.innerWidth<=960){
@@ -90,7 +93,16 @@ return (
               className='nav-links'
               onClick={closeMobileMenu}
             >
-              Quiz demo
+              Quiz Demo
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link
+              to='/'
+              className='nav-links'
+              onClick={closeMobileMenu && Logout}
+            >
+              Log out
             </Link>
           </li>
         </ul>
