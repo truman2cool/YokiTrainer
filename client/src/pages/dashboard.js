@@ -6,9 +6,9 @@ import Navbar from "../components/navbar";
 function Dashboard(){
 
 
-  async function onClick(e){
+  /*async function onClick(e){
       localStorage.removeItem("JWT_PAYLOAD")
-  }
+  }*/
 
 return(
   <div><Navbar/>
