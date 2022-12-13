@@ -49,7 +49,7 @@ await axios.post("/signup",newUser,{
 }).then((user)=>{
   console.log(user);
 }).catch(error => {
-  window.alert(error);
+  window.alert("User with username or email already exist");
   return;
 });
 
@@ -75,6 +75,7 @@ return (
           <input
               type = "text"
               id="username"
+              autoComplete='username'
               placeholder='Enter username'
               onChange={(e) => updateUser({username: e.target.value})}
               value={user.username}
@@ -98,6 +99,7 @@ return (
           <input
               type = "text"
               id="fullname"
+              autoComplete="full name"
               placeholder='Enter full name'
               onChange={(e) => updateUser({fullname: e.target.value})}
               value={user.fullname}

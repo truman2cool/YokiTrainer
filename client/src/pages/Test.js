@@ -1,47 +1,47 @@
 import React, { useState } from 'react';
 import Navbar from "../components/navbar";
 import { Link } from "react-router-dom";
+//import "bootstrap/dist/css/bootstrap.css";
 
 function Test() {
     const questions = [
-		{
-			questionText: 'What is the capital of France?',
-			answerOptions: [
-				{ answerText: 'New York', isCorrect: false },
-				{ answerText: 'London', isCorrect: false },
-				{ answerText: 'Paris', isCorrect: true },
-				{ answerText: 'Dublin', isCorrect: false },
-			],
-		},
-		{
-			questionText: 'Who is CEO of Tesla?',
-			answerOptions: [
-				{ answerText: 'Jeff Bezos', isCorrect: false },
-				{ answerText: 'Elon Musk', isCorrect: true },
-				{ answerText: 'Bill Gates', isCorrect: false },
-				{ answerText: 'Tony Stark', isCorrect: false },
-			],
-		},
-		{
-			questionText: 'The iPhone was created by which company?',
-			answerOptions: [
-				{ answerText: 'Apple', isCorrect: true },
-				{ answerText: 'Intel', isCorrect: false },
-				{ answerText: 'Amazon', isCorrect: false },
-				{ answerText: 'Microsoft', isCorrect: false },
-			],
-		},
-		{
-			questionText: 'How many Harry Potter books are there?',
-			answerOptions: [
-				{ answerText: '1', isCorrect: false },
-				{ answerText: '4', isCorrect: false },
-				{ answerText: '6', isCorrect: false },
-				{ answerText: '7', isCorrect: true },
-			],
-		},
-	];
-
+        {
+            questionText: 'How many pieces in a Red Sox maki?',
+            answerOptions: [
+                { answerText: '3', isCorrect: false },
+                { answerText: '8', isCorrect: true },
+                { answerText: '6', isCorrect: false },
+                { answerText: '4', isCorrect: false },
+            ],
+        },
+        {
+            questionText: "What's liquor is in a Maitai",
+            answerOptions: [
+                { answerText: 'Rum', isCorrect: true },
+                { answerText: 'Vodka', isCorrect: false },
+                { answerText: 'Tequila', isCorrect: false },
+                { answerText: 'Cognac', isCorrect: false },
+            ],
+        },
+        {
+            questionText: "What is shiso leaf?",
+            answerOptions: [
+                { answerText: 'A luck clover', isCorrect: false },
+                { answerText: 'A random leaf from the side walk', isCorrect: false },
+                { answerText: 'Japanese Flower', isCorrect: false },
+                { answerText: 'Japanese Mint', isCorrect: true },
+            ],
+        },
+        {
+            questionText: "What do we call a  “Philly (Philadelphia) Roll” at Yoki?",
+            answerOptions: [
+                { answerText: 'Philly maki', isCorrect: false },
+                { answerText: 'Rock n Roll maki', isCorrect: false },
+                { answerText: 'Good Time maki', isCorrect: true },
+                { answerText: 'Alaska maki', isCorrect: false },
+            ],
+        },
+    ];
 
     const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
@@ -64,8 +64,8 @@ return (
     <div>
     <Navbar />
     <div>            
-            <label>Create test question?</label>
-                <Link to="/createTest"> Create test question</Link>
+            <label>Create Quiz?</label>
+                <Link to="/createQuiz"> Create test question</Link>
             </div>
     <div className='app'>
         {showScore ? (

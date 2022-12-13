@@ -33,6 +33,25 @@ export default function Navbar() {
     showButton();
   },[]);*/
 
+ /*<li className='nav-item'>
+  <Link
+    to='/ViewQuiz'
+    className='nav-links'
+    onClick={closeMobileMenu}
+  >
+    View Quiz
+  </Link>
+</li>
+<li className='nav-item'>
+  <Link
+    to='/TakeQuiz'
+    className='nav-links'
+    onClick={closeMobileMenu}
+  >
+    Take Quiz
+  </Link>
+</li>*/
+
 return (
   <>
     <nav className='navbar'>
@@ -59,24 +78,6 @@ return (
               onClick={closeMobileMenu}
             >
               Menu
-            </Link>
-          </li>
-          <li className='nav-item'>
-            <Link
-              to='/ViewQuiz'
-              className='nav-links'
-              onClick={closeMobileMenu}
-            >
-              View Quiz
-            </Link>
-          </li>
-          <li className='nav-item'>
-            <Link
-              to='/TakeQuiz'
-              className='nav-links'
-              onClick={closeMobileMenu}
-            >
-              Take Quiz
             </Link>
           </li>
           <li className='nav-item'>

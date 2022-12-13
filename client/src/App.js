@@ -13,7 +13,6 @@ import Create from "./components/create";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Menu from "./pages/menu";
-import Logout from "./pages/logout";
 import Test from "./pages/Test";
 import CreateQuiz from "./pages/createQuiz";
 import CreateTest from "./components/createTest";
@@ -24,26 +23,6 @@ import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import TakeQuiz from "./pages/TakeQuiz";
 import ViewQuiz from "./pages/ViewQuiz";
 
-/*function App(){
-
-  return (
-     <div className="App">
-   <Routes>      
-     <Route exact path="/" element={<Home />} />
-     <Route path="/dashboard" element={<Dashboard />} />
-     <Route path="/login" element={<Login/>}/>
-     <Route path="/signup" element={<Signup />} />
-     <Route path="/logout" element={<Logout />} />
-     <Route path="/edit/:id" element={<Edit />} />
-     <Route path="/Test" element={<Test />} />
-     <Route path="/menu" element={<Menu />} />
-     <Route path="/createQuiz" element={<CreateQuiz />} />
-     <Route path="/createTest"  element={<CreateTest />} /> 
-     <Route path="/create"  element={<Create />} /> 
-   </Routes>
-     </div>
-   )
-};*/
 class App extends React.Component {
 
   componentDidMount() {
@@ -68,7 +47,6 @@ class App extends React.Component {
 
     <Route path="/login" element={<Login/>}/>
     <Route path="/signup" element={<Signup />} />
-    <Route path="/logout" element={<Logout />} />
     <Route element={<PrivateRoutes/>}>
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/edit/:id" element={<Edit />} />
