@@ -75,7 +75,6 @@ export default function Edit() {
               id="email"
               placeholder='Enter an email'
               autoComplete="email"
-
               onChange={(e) => updateForm({email: e.target.value})}
               required
               />
@@ -89,7 +88,6 @@ export default function Edit() {
            placeholder="Enter new password"
            autoComplete="current-password"
            ng-hide="true"
-
            onChange={(e) => updateForm({ password: e.target.value })}
            required
          />

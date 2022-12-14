@@ -205,10 +205,10 @@ employeeRoutes.route("/auth").get(async function (req, res) {
     }
     db_connect
       .collection("users")
-      .updateOne(myquery, newvalues, function (err, res) {
+      .updateOne(myquery, newValues, function (err, res) {
         if (err) throw err;
         console.log(ObjectId(req.params.id)+" Employee updated");
-        response.json(res);
+        response.json({msg:"User updated"});
       });
    });
     
