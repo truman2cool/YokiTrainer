@@ -49,7 +49,6 @@ export default function Edit() {
  async function onSubmit(e) {
    e.preventDefault();
    const editedItem = {
-     username: form.username,
      email: form.email,
      fullname: form.fullname,
      password: form.password,
@@ -64,7 +63,7 @@ export default function Edit() {
      },
    });
  
-   navigate("../Dashboard");
+   navigate("../employee");
  }
  
  // This following section will display the form that takes input from the user to update the data.
@@ -72,16 +71,6 @@ export default function Edit() {
    <div>
      <h3>Update Item</h3>
      <form onSubmit={onSubmit}>
-       <div className="form-group">
-         <label htmlFor="name">Username: </label>
-         <input
-           type="text"
-           className="form-control"
-           id="name"
-           value={form.username}
-           onChange={(e) => updateForm({ username: e.target.value })}
-         />
-       </div>
        <div className="form-group">
          <label htmlFor="description">Email: </label>
          <input
