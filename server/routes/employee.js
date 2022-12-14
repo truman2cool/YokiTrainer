@@ -12,17 +12,6 @@ const checkauth = require("../middleware/checkauth");
 const ObjectId = require("mongodb").ObjectId;
 
 //get list of records
-/*employeeRoutes.route("/employee").get(function (req, res){
-    let db_connect = dbo.getDb("Yoki");
-    db_connect
-    .collection("users")
-    .find({})
-    .toArray(function (err, result){
-        if (err) throw err;
-        res.json(result);
-    });
-});*/
-
 employeeRoutes.get("/employee", (req, res)=>{
   let db_connect = dbo.getDb("Yoki");
   db_connect
@@ -176,19 +165,19 @@ employeeRoutes.route("/logout").delete(async function (req, res){
 });
 
 //auth user
-employeeRoutes.route("/auth").get(async function (req, res) {
+/*employeeRoutes.route("/auth").get(async function (req, res) {
   const sessUser = req.session.user;
     if (sessUser) {
     return res.json({ msg: " Authenticated Successfully", sessUser });
   } else {
     return res.status(401).json({ msg: "Unauthorized" });
   }
-});
+});*/
 
    // This section will help you update a record by id.
-    employeeRoutes.route("/update/:id").post(function (req, response) {
+    employeeRoutes.route("/userUpdate/:id").post(function (req, response) {
     let db_connect = dbo.getDb();
-    let myquery = { _id: email };
+    let myquery = { _id: ObjectId(req.params.id) };
     let newvalues = {
       $set: {
         email: req.body.email,
@@ -196,14 +185,15 @@ employeeRoutes.route("/auth").get(async function (req, res) {
       },
     };
     db_connect
-      .collection("Users")
+      .collection("users")
       .updateOne(myquery, newvalues, function (err, res) {
         if (err) throw err;
-        console.log("1 Employee document updated");
-        response.json(res);
+        console.log("User updated");
+        response.json({msg:"User updated"});
       });
    });
     
+
    // This section will help you delete a record
    employeeRoutes.route("/:id").delete((req, response) => {
     let db_connect = dbo.getDb();
@@ -215,7 +205,7 @@ employeeRoutes.route("/auth").get(async function (req, res) {
     });
    });
 
-
+   //get single record
    employeeRoutes.get("/:id", (req, res)=>{
     User.findOne({_id: req.params.id}).then(user=>{
       res.json({user, success: true})
