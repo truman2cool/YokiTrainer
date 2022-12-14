@@ -4,9 +4,7 @@ import { useParams, useNavigate } from "react-router";
 
 export default function Edit() {
  const [form, setForm] = useState({
-   username: "",
    email: "",
-   fullname:"",
    password: "",
    records: [],
  });
@@ -48,16 +46,15 @@ export default function Edit() {
  
  async function onSubmit(e) {
    e.preventDefault();
-   const editedItem = {
+   const editedUser = {
      email: form.email,
-     fullname: form.fullname,
      password: form.password,
    };
  
    // This will send a post request to update the data in the database.
    await fetch(`/userUpdate/${params.id}`, {
      method: "POST",
-     body: JSON.stringify(editedItem),
+     body: JSON.stringify(editedUser),
      headers: {
        'Content-Type': 'application/json'
      },
@@ -69,38 +66,34 @@ export default function Edit() {
  // This following section will display the form that takes input from the user to update the data.
  return (
    <div>
-     <h3>Update Item</h3>
-     <form onSubmit={onSubmit}>
-       <div className="form-group">
-         <label htmlFor="description">Email: </label>
+     <h3>Update User</h3>
+     <form className="signup" onSubmit={onSubmit}>
+       <label>Email:</label>
+          <div>
+          <input
+              type = "text"
+              id="email"
+              placeholder='Enter an email'
+              autoComplete="email"
+
+              onChange={(e) => updateForm({email: e.target.value})}
+              required
+              />
+          </div>
+       <label>Password: </label>
+       <div>
          <input
-           type="text"
+           type="password"
+           id="password"
            className="form-control"
-           id="description"
-           value={form.email}
-           onChange={(e) => updateForm({ email: e.target.value })}
-         />
-       </div>
-       <div className="form-group">
-         <label htmlFor="description">Fullname: </label>
-         <input
-           type="text"
-           className="form-control"
-           id="description"
-           value={form.fullname}
-           onChange={(e) => updateForm({ fullname: e.target.value })}
-         />
-       </div>
-       <div className="form-group">
-         <label htmlFor="description">Password: </label>
-         <input
-           type="text"
-           className="form-control"
-           id="description"
-           value={form.password}
+           placeholder="Enter new password"
+           autoComplete="current-password"
+           ng-hide="true"
+
            onChange={(e) => updateForm({ password: e.target.value })}
+           required
          />
-       </div>
+        </div>
        <br/>
 
        <div className="form-group">

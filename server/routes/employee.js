@@ -197,14 +197,12 @@ employeeRoutes.route("/auth").get(async function (req, res) {
     employeeRoutes.route("/userUpdate/:id").post(function (req, response) {
     let db_connect = dbo.getDb();
     let myquery = { _id: ObjectId(req.params.id) };
-    let newvalues = {
+    let newValues = {
       $set: {
-        username: req.body.username,
         email: req.body.email,
-        fullname: req.body.fullname,
         password: req.body.password,
       },
-    };
+    }
     db_connect
       .collection("users")
       .updateOne(myquery, newvalues, function (err, res) {
