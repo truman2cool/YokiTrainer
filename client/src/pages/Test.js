@@ -65,7 +65,7 @@ return (
     <Navbar />
     <div>            
             <label>Create Quiz?</label>
-                <Link to="/createQuiz"> Create test question</Link>
+                <Link to="/createQuiz"> Create quiz</Link>
             </div>
     <div className='app'>
         {showScore ? (
