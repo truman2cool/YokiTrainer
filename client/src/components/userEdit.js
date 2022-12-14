@@ -58,8 +58,12 @@ export default function Edit() {
      headers: {
        'Content-Type': 'application/json'
      },
-   });
- 
+      }).then((res)=>{
+        console.log(res);;
+     }).catch(error => {
+    window.alert(error);
+    return;
+  });
    navigate("../employee");
  }
  

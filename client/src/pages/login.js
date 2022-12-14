@@ -32,7 +32,7 @@ function updateUser(value) {
       localStorage.setItem("JWT_PAYLOAD", res.data.token)
       localStorage.setItem("_ID", res.data.user._id,)
     }).catch(error => {
-      window.alert(error);
+      window.alert("Invalid crendentials");
       return;
     });
   setUser({ username: "", password: ""});  
